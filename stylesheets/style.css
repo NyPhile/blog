@@ -1,0 +1,313 @@
+/*	general style - by NyPhile */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "microsoft yahei", sans-self;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+header,
+footer,
+section {
+  display: block;
+  position: relative;
+}
+a {
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+/* STYLES */
+body {
+  background-color: #e9ba8c;
+}
+.wrap {
+  width: 1200px;
+  margin: 80px auto;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.wrap nav {
+  position: relative;
+  z-index: 11;
+  height: 40px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.wrap nav ul {
+  overflow: hidden;
+  padding-left: 30px;
+}
+.wrap nav ul li {
+  float: left;
+  height: 38px;
+  padding: 0 20px;
+  margin-right: 10px;
+  font: 1em/40px "微软雅黑";
+}
+.wrap nav ul li a {
+  color: #a6a9ac;
+}
+.wrap nav ul li a:hover {
+  color: #2b2f32;
+}
+.wrap nav ul li.on a {
+  color: #2b2f32;
+}
+.wrap nav ul li#nav-current {
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  overflow: hidden;
+  height: 2px;
+  width: 70px;
+  background: #38b7ea;
+}
+.wrap section.bd {
+  position: relative;
+  z-index: 10;
+  background: #f5f8f9;
+  padding: 1px;
+}
+.wrap section.bd .profile {
+  width: 280px;
+  margin: 30px;
+  padding-top: 1px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(50, 50, 50, 0.1);
+}
+.wrap section.bd .profile .avatar {
+  width: 100px;
+  height: 100px;
+  margin: 25px auto;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1160;
+  -moz-perspective: 1160;
+}
+.wrap section.bd .profile .avatar .f {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100px;
+  height: 100px;
+  background: url(../images/avatar.png) center center no-repeat;
+  background-size: 100px 100px;
+  border-radius: 50%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.wrap section.bd .profile .avatar .e {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  width: 100px;
+  height: 100px;
+  background: url(../images/avatar_e.png) center center no-repeat;
+  background-size: 100px 100px;
+  border-radius: 50%;
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: perspective(1160px) rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.wrap section.bd .profile .avatar .cnt {
+  -webkit-transition: .6s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: .6s;
+  -moz-transform-style: preserve-3d;
+}
+.wrap section.bd .profile .avatar:hover .f {
+  -ms-transform: perspective(1160px) rotateY(180deg);
+}
+.wrap section.bd .profile .avatar:hover .e {
+  -ms-transform: perspective(1160px) rotateY(0deg);
+}
+.wrap section.bd .profile .avatar:hover .cnt {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+.wrap section.bd .profile h1 {
+  text-align: center;
+  font-size: 1.25em;
+  color: #3d4347;
+}
+.wrap section.bd .profile h2 {
+  text-align: center;
+  font-size: 0.75em;
+  color: #565a5f;
+  margin-top: 8px;
+}
+.wrap section.bd .profile p.place {
+  text-align: center;
+  font-size: 0.75em;
+  color: #a6a9ac;
+  margin-top: 8px;
+}
+.wrap section.bd .profile .linkme {
+  margin: 24px 0 0;
+  padding: 24px 0 24px 25px;
+  border-top: 1px solid #eceff2;
+}
+.wrap section.bd .profile .linkme a {
+  display: block;
+  padding-left: 20px;
+  color: #888;
+}
+.wrap section.bd .profile .linkme a span {
+  font-size: 0.75em;
+  color: #aaa;
+}
+.wrap section.bd .profile .linkme .weibo {
+  height: 18px;
+  background: url(../images/weibo_platform_logo.png) no-repeat 1px 2px;
+  background-size: 17px 30px;
+}
+.wrap section.bd .profile .linkme .weibo:hover {
+  color: #555;
+  background-position: 1px -16px;
+}
+.wrap section.bd .profile .linkme .github {
+  height: 18px;
+  margin-top: 10px;
+  background: url(../images/github_logo.png) no-repeat 0 0px;
+  background-size: 17px 34px;
+}
+.wrap section.bd .profile .linkme .github:hover {
+  color: #555;
+  background-position: 0 -18px;
+}
+.wrap section.bd .profile:hover {
+  box-shadow: 0 1px 4px rgba(50, 50, 50, 0.2);
+}
