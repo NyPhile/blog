@@ -169,7 +169,7 @@ body {
 .wrap nav ul li a {
   color: #a6a9ac;
 }
-.wrap nav ul li a:hover {
+.wrap nav ul li:hover a {
   color: #2b2f32;
 }
 .wrap nav ul li.on a {
