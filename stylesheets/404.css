@@ -3,6 +3,7 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 body {
   color: #838b94;
@@ -33,10 +34,13 @@ img {
   margin-bottom: 82px;
 }
 #parallax {
-  position: relative;
+  position: absolute;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 1300px;
+  height: 700px;
+  left: 50%;
+  top: 50%;
+  margin: -350px 0 0 -650px;
 }
 div.error1 {
   position: relative;
