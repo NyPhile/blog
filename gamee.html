@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="global.css">
+</head>
+<body>
+<header>
+	<div class="title">游戏大事件</div>
+	<a href="" class="login">登</a>
+	<a href="" class="search">搜</a>
+</header>
+<nav>
+	<a href="" class="nav nav1 on">最新</a>
+	<a href="" class="nav nav2">收藏</a>
+	<a href="" class="nav nav3">流行</a>
+</nav>
+<section class="bd">
+	<div class="items">
+		<ul id="left">
+			<li>
+				<img src="" alt="我是img" width="100%" height="40">
+				<h3>女神异闻录4 黄金版 流程攻略</h3>
+				<div class="tag">psv</div>
+			</li>
+			<li>
+				<img src="" alt="我是img" width="100%" height="40">
+				<h3>女神异闻录4 黄金版 流程攻略</h3>
+				<div class="tag">psv</div>
+			</li>
+			<li>
+				<img src="" alt="我是img" width="100%" height="40">
+				<h3>女神异闻录4 黄金版 流程攻略</h3>
+				<div class="tag">psv</div>
+			</li>
+		</ul>
+		<ul id="right">
+			<li>
+				<img src="" alt="我是img" width="100%" height="40">
+				<h3>女神异闻录4 黄金版 流程攻略</h3>
+				<div class="tag">psv</div>
+			</li>
+			<li>
+				<img src="" alt="我是img" width="100%" height="40">
+				<h3>女神异闻录4 黄金版 流程攻略</h3>
+				<div class="tag">psv</div>
+			</li>
+		</ul>
+	</div>
+</section>
+<script src="http://img1.cache.netease.com/f2e/lib/js/ne.js"></script>
+<script type="text/javascript" charset="utf-8">
+function loaddata(){
+	var txt = 9;
+	NE.load.request({
+		url: ["http://42.96.164.129/search_by_game_id.php?game_id=", txt].join("")
+	}, function(e) {
+		if (e) {
+			NE("#wrapper")[0].innerHTML = "<p><strong>图书名称：</strong>"+e.title+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>ISBN(13)：</strong>"+e.isbn13+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>封面：</strong><img src='"+e.image+"' /></p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>作者：</strong>"+e.author+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>译者：</strong>"+e.translator+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>出版年月：</strong>"+e.pubdate+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>出版社：</strong>"+e.publisher+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>评分：</strong>"+e.rating.average+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>定价：</strong>"+e.price+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>页数：</strong>"+e.pages+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>作者简介：</strong>"+e.author_intro+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>内容简介：</strong>"+e.summary+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>目录：</strong>"+e.catalog+"</p><br />";
+			NE("#wrapper")[0].innerHTML += '<input type="text" id="test1" value="请输入ISBN数字" onfocus="if(this.value==\'请输入ISBN数字\'){this.value=\'\'}" onblur="if(this.value==\'\'){this.value=\'请输入ISBN数字\'}" /><a href="javascript:submit()">重新查询</a>';
+		}
+	})
+}
+</script>
+</body>
+</html>
