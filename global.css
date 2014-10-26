@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑";
+}
+a {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+header {
+  height: 40px;
+  background: #3995C9;
+}
+header .title {
+  float: left;
+  height: 20px;
+  margin: 10px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #fff;
+}
+header .login {
+  float: right;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  background: #79B993;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+}
+header .search {
+  float: right;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 10px 0 10px;
+  background: #79B993;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+}
+nav {
+  text-align: center;
+  height: 30px;
+  padding: 5px 5% 5px;
+  background: #3995C9;
+}
+nav .nav {
+  display: block;
+  float: left;
+  width: 33.33%;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+  box-sizing: border-box;
+}
+nav .on {
+  background: #fff;
+  color: #252525;
+}
+nav .nav1 {
+  border-radius: 4px 0 0 4px;
+}
+nav .nav2,
+nav .nav3 {
+  border-left: 0;
+}
+nav .nav3 {
+  border-radius: 0 4px 4px 0;
+}
+.bd {
+  min-height: 200px;
+  padding: 10px 10px 0;
+  background: #4C5252;
+  overflow: hidden;
+}
+.bd .items #left {
+  float: left;
+  width: 48%;
+}
+.bd .items #right {
+  float: right;
+  width: 48%;
+}
+.bd .items li {
+  background: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.bd .items li img {
+  background: #fff;
+  color: #ccc;
+}
+.bd .items li h3 {
+  font-size: 14px;
+}
+.bd .items li .tag {
+  font-size: 12px;
+  color: #999;
+}
