@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="global.css">
+</head>
+<body>
+<div class="head">
+	<h1>女神异闻录4 黄金版</h1>
+</div>
+<div class="title">
+	<div class="titletxt">游戏简介</div>
+</div>
+<div class="wrap">
+	<img src="http://d.hiphotos.baidu.com/baike/c0%3Dbaike220%2C5%2C5%2C220%2C73%3Bt%3Dgif/sign=3167c91e12dfa9ece9235e4503b99c66/11385343fbf2b21150a72e4cc98065380cd78e23.jpg" alt="" class="img">
+	<ul>
+		<li><strong>平台：</strong>PSV</li>
+		<li><strong>类型：</strong>RPG</li>
+		<li><strong>Fami通评分：</strong>35</li>
+		<li><strong>发售日期：</strong>2012年6月14日</li>
+	</ul>
+	<p>女神异闻录4》是女神异闻录系列的第四季。主题颜色为“黄色”。</p>
+	<p>在一个乡间小镇中发生了奇怪的连续杀人事件，主角为了解决事件，亦为了自己的未来，开始展开战斗。前作采用手枪型召唤器召唤Persona，而本作则放弃手枪召唤器，而是击碎画有自己Persona的卡召唤Persona。发售前有传闻眼镜是Persona的召唤器，但实际是在电视世界中，只要带上眼镜就可以看清楚充满浓雾的环境。</p>
+	<p>本作荣获日本游戏大赏 2009和Fami通アワード 2008的优秀赏，皆为得奖名单中唯一一款PS2游戏。</p>
+
+
+</div>
+<script src="http://img1.cache.netease.com/f2e/lib/js/ne.js"></script>
+<script type="text/javascript" charset="utf-8">
+function loaddata(){
+	var txt = 9;
+	NE.load.request({
+		url: ["http://42.96.164.129/search_by_game_id.php?game_id=", txt].join("")
+	}, function(e) {
+		if (e) {
+			NE("#wrapper")[0].innerHTML = "<p><strong>图书名称：</strong>"+e.title+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>ISBN(13)：</strong>"+e.isbn13+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>封面：</strong><img src='"+e.image+"' /></p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>作者：</strong>"+e.author+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>译者：</strong>"+e.translator+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>出版年月：</strong>"+e.pubdate+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>出版社：</strong>"+e.publisher+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>评分：</strong>"+e.rating.average+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>定价：</strong>"+e.price+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>页数：</strong>"+e.pages+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>作者简介：</strong>"+e.author_intro+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>内容简介：</strong>"+e.summary+"</p>";
+			NE("#wrapper")[0].innerHTML += "<p><strong>目录：</strong>"+e.catalog+"</p><br />";
+			NE("#wrapper")[0].innerHTML += '<input type="text" id="test1" value="请输入ISBN数字" onfocus="if(this.value==\'请输入ISBN数字\'){this.value=\'\'}" onblur="if(this.value==\'\'){this.value=\'请输入ISBN数字\'}" /><a href="javascript:submit()">重新查询</a>';
+		}
+	})
+}
+</script>
+</body>
+</html>
