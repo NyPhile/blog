@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		html,body{height: 100%;}*{margin: 0;padding: 0;font-family: "微软雅黑";line-height: 1;}
+		.top,.btm{height: 40%;text-align: center;color: #fff;font-size:2em;}.top{background: #46C579;}.btm{background: #3CAC69;}
+		.btn{height:20%;font-family: Arial;font-size: 2em;text-align: center;}
+	</style>
+</head>
+<body>
+	<div class="top" id="top">粉丝</div>
+	<div class="btm" id="btm">侏儒</div>
+	<div class="btn" id="btn" onclick="shake()">
+		shake
+	</div>
+	<script type="text/javascript">
+		document.getElementById('top').style.lineHeight = document.getElementById('top').offsetHeight+"px";
+		document.getElementById('btm').style.lineHeight = document.getElementById('btm').offsetHeight+"px";
+		document.getElementById('btn').style.lineHeight = document.getElementById('btn').offsetHeight+"px";
+		var _char = [ "高速铁路","达·芬奇","存款","火腿","杀人游戏","自驾游","玄关","文化遗产","队长","报纸" ]
+		function shake(){
+			var i = parseInt(10*Math.random());
+			document.getElementById('top').innerHTML = _char[i];
+			var j = parseInt(10*Math.random());
+			document.getElementById('btm').innerHTML = _char[j];
+		}
+	</script>
+</body>
+</html>
