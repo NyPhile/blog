@@ -74,8 +74,14 @@
 				if(direction.indexOf("touchend")!=-1)fun();
 			}, false);
 		};
-		touches($("#p1"),"swipeleft",alert("left"));
-		touches($("#p1"),"swiperight",alert("right"));
+		touches($("#p1")[0],"swipeleft",aaa);
+		touches($("#p1")[0],"swiperight",bbb);
+		function aaa(){
+			alert("left");
+		}
+		function bbb(){
+			alert("right");
+		}
 	</script>
 </body>
 </html>
