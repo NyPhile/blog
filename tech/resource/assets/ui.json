@@ -1,0 +1,7 @@
+{"file":"ui.png","frames":{
+"award":{"x":104,"y":58,"w":100,"h":100,"offX":0,"offY":0,"sourceW":100,"sourceH":100},
+"money":{"x":1,"y":1,"w":274,"h":55,"offX":0,"offY":0,"sourceW":274,"sourceH":55},
+"right":{"x":104,"y":160,"w":88,"h":64,"offX":0,"offY":0,"sourceW":88,"sourceH":64},
+"share":{"x":1,"y":58,"w":101,"h":101,"offX":0,"offY":0,"sourceW":101,"sourceH":101},
+"time":{"x":277,"y":1,"w":185,"h":55,"offX":0,"offY":0,"sourceW":185,"sourceH":55},
+"wrong":{"x":1,"y":161,"w":70,"h":68,"offX":0,"offY":0,"sourceW":70,"sourceH":68}}}

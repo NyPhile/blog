@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>大佬约不约</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi">
+
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+
+    <style>
+        body {
+            text-align: center;
+            background: #3fabef;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+        html {
+            -ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
+            overflow: hidden;
+        }
+        div, canvas {
+            display:block;
+            position:absolute;
+            margin: 0 auto;
+            padding: 0;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="position:relative;" id="gameDiv"></div>
+<script>var document_class = "Main";</script><!--这部分内容在编译时会被替换，要修改文档类，请到工程目录下的egretProperties.json内编辑。-->
+<script src="launcher/egret_require.js"></script>
+<script src="launcher/egret_loader.js"></script>
+<script src="launcher/game-min.js"></script>
+<script>
+    var support = [].map && document.createElement("canvas").getContext;
+    if (support) {
+        egret_h5.startGame();
+    }
+    else {
+        alert("Egret 不支持您当前的浏览器")
+    }
+</script>
+
+
+<section style="display: none !important">
+    <div id="__newsapp_sharetext">大佬约不约</div><!--微博正文，分享连接若有同放这里-->
+    <div id="__newsapp_sharephotourl">http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png</div><!--微博图片连接-->
+    <div id="__newsapp_sharewxtitle">大佬约不约</div><!--微信标题-->
+    <div id="__newsapp_sharewxtext">大佬约不约？</div><!--微信摘要-->
+    <div id="__newsapp_sharewxurl"></div><!--微信分享连接-->
+    <div id="__newsapp_sharewxthumburl">http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png</div><!--微信缩略图连接-->
+</section>
+
+<script>
+
+
+    var newsapp_sharetext = document.getElementById("__newsapp_sharetext");
+    newsapp_sharetext.innerHTML = newsapp_sharetext.innerHTML+' ' + window.location.href + '?f=wx';
+    var newsapp_sharewxthumburl = document.getElementById("__newsapp_sharewxurl");
+    newsapp_sharewxthumburl.innerHTML =  window.location.href + '?f=wx';
+
+    //挖掘机技术大考核中我的分数56分，你能超过我么？
+    window.shareData = {
+        img:"http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png",
+        link:window.location.href,
+        content:"大佬约不约？",
+        title:"大佬约不约？"
+    }
+    document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+        WeixinJSBridge.on("menu:share:appmessage", function(argv) {
+            WeixinJSBridge.invoke("sendAppMessage", {
+                "img_url": shareData.imgurl,
+                "link": shareData.link,
+                "desc": shareData.content,
+                "title": shareData.title
+            });
+        });
+        WeixinJSBridge.on("menu:share:timeline", function(argv) {
+            WeixinJSBridge.invoke("shareTimeline", {
+                "img_url": shareData.imgurl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": shareData.link,
+                "desc": shareData.content,
+                "title": shareData.title
+            });
+        });
+    }, false);
+
+    function setShare(score){
+        window.shareData.score = score;
+        window.shareData.title = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！";
+    }
+
+    function doAppShare(){
+        var newsapp_sharetext = document.getElementById("__newsapp_sharetext");
+        var newsapp_sharewxtitle = document.getElementById("__newsapp_sharewxtitle");
+        if(!!window.shareData.score && window.shareData.score > 0){
+
+            newsapp_sharetext.innerHTML = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！"
+            newsapp_sharewxtitle.innerHTML = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！"
+        }
+        //"挖掘机技术考了"+score+"分，要问哪家强，一比见分晓"
+        window.location.href = 'share://';
+    }
+
+    function do_share(){
+        if((/NewsApp/ig).test(navigator.userAgent)){
+            doAppShare();
+        }else{
+            $$("sbg").style.display="block";
+            setTimeout(function(){$$("sbg").style.display="none";},3000)
+        }
+    }
+
+</script>
+</body>
+</html>
