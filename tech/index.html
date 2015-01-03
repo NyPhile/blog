@@ -58,69 +58,60 @@
     <div id="__newsapp_sharewxurl"></div><!--微信分享连接-->
     <div id="__newsapp_sharewxthumburl">http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png</div><!--微信缩略图连接-->
 </section>
-
 <script>
-
-
-    var newsapp_sharetext = document.getElementById("__newsapp_sharetext");
-    newsapp_sharetext.innerHTML = newsapp_sharetext.innerHTML+' ' + window.location.href + '?f=wx';
-    var newsapp_sharewxthumburl = document.getElementById("__newsapp_sharewxurl");
-    newsapp_sharewxthumburl.innerHTML =  window.location.href + '?f=wx';
-
-    //挖掘机技术大考核中我的分数56分，你能超过我么？
-    window.shareData = {
-        img:"http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png",
-        link:'http://tech.163.com/special/year_plan_h5/',
-        content:"2014跨年策划：大佬，约不约 - 网易科技",
-        title:"大佬，约不约 - 网易科技"
-    }
-    document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
-        WeixinJSBridge.on("menu:share:appmessage", function(argv) {
-            WeixinJSBridge.invoke("sendAppMessage", {
-                "img_url": shareData.img,
-                "link": shareData.link,
-                "desc": shareData.content,
-                "title": shareData.title
+var imgUrl = 'http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png';
+var lineLink = 'http://tech.163.com/special/year_plan_h5/';
+var descContent = "2014跨年策划：大佬，约不约 - 网易科技";
+var shareTitle = '大佬，约不约 - 网易科技';
+var appid = '';
+function shareFriend() {
+    WeixinJSBridge.invoke('sendAppMessage',{
+                            "appid": appid,
+                            "img_url": imgUrl,
+                            "img_width": "300",
+                            "img_height": "300",
+                            "link": lineLink,
+                            "desc": descContent,
+                            "title": shareTitle
+                            }, function(res) {
+                            _report('send_msg', res.err_msg);
+                            })
+}
+function shareTimeline() {
+    WeixinJSBridge.invoke('shareTimeline',{
+                            "img_url": imgUrl,
+                            "img_width": "300",
+                            "img_height": "300",
+                            "link": lineLink,
+                            "desc": descContent,
+                            "title": shareTitle
+                            }, function(res) {
+                            _report('timeline', res.err_msg);
+                            });
+}
+function shareWeibo() {
+    WeixinJSBridge.invoke('shareWeibo',{
+                            "content": descContent,
+                            "url": lineLink,
+                            }, function(res) {
+                            _report('weibo', res.err_msg);
+                            });
+}
+// 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+            shareFriend();
             });
-        });
-        WeixinJSBridge.on("menu:share:timeline", function(argv) {
-            WeixinJSBridge.invoke("shareTimeline", {
-                "img_url": shareData.img,
-                "img_width": "320",
-                "img_height": "320",
-                "link": shareData.link,
-                "desc": shareData.content,
-                "title": shareData.title
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function(argv){
+            shareTimeline();
             });
-        });
-    }, false);
-
-    function setShare(score){
-        window.shareData.score = score;
-        window.shareData.title = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！";
-    }
-
-    function doAppShare(){
-        var newsapp_sharetext = document.getElementById("__newsapp_sharetext");
-        var newsapp_sharewxtitle = document.getElementById("__newsapp_sharewxtitle");
-        if(!!window.shareData.score && window.shareData.score > 0){
-
-            newsapp_sharetext.innerHTML = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！"
-            newsapp_sharewxtitle.innerHTML = "我在网易科技跨年策划《大佬约不约》里赚到了"+window.shareData.score+"元，有钱就是任性！"
-        }
-        //"挖掘机技术考了"+score+"分，要问哪家强，一比见分晓"
-        window.location.href = 'share://';
-    }
-
-    function do_share(){
-        if((/NewsApp/ig).test(navigator.userAgent)){
-            doAppShare();
-        }else{
-            $$("sbg").style.display="block";
-            setTimeout(function(){$$("sbg").style.display="none";},3000)
-        }
-    }
-
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function(argv){
+            shareWeibo();
+            });
+        }, false);
 </script>
 </body>
 </html>
