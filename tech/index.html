@@ -51,10 +51,10 @@
 
 
 <section style="display: none !important">
-    <div id="__newsapp_sharetext">大佬约不约</div><!--微博正文，分享连接若有同放这里-->
+    <div id="__newsapp_sharetext">2014跨年策划：大佬，约不约 - 网易科技</div><!--微博正文，分享连接若有同放这里-->
     <div id="__newsapp_sharephotourl">http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png</div><!--微博图片连接-->
-    <div id="__newsapp_sharewxtitle">大佬约不约</div><!--微信标题-->
-    <div id="__newsapp_sharewxtext">大佬约不约？</div><!--微信摘要-->
+    <div id="__newsapp_sharewxtitle">2014跨年策划：大佬，约不约 - 网易科技</div><!--微信标题-->
+    <div id="__newsapp_sharewxtext">2014跨年策划：大佬，约不约 - 网易科技</div><!--微信摘要-->
     <div id="__newsapp_sharewxurl"></div><!--微信分享连接-->
     <div id="__newsapp_sharewxthumburl">http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png</div><!--微信缩略图连接-->
 </section>
@@ -70,14 +70,14 @@
     //挖掘机技术大考核中我的分数56分，你能超过我么？
     window.shareData = {
         img:"http://img4.cache.netease.com/f2e/tech/year_planning_2014/images/share_wap.png",
-        link:window.location.href,
-        content:"大佬约不约？",
-        title:"大佬约不约？"
+        link:'http://tech.163.com/special/year_plan_h5/',
+        content:"2014跨年策划：大佬，约不约 - 网易科技",
+        title:"大佬，约不约 - 网易科技"
     }
     document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
         WeixinJSBridge.on("menu:share:appmessage", function(argv) {
             WeixinJSBridge.invoke("sendAppMessage", {
-                "img_url": shareData.imgurl,
+                "img_url": shareData.img,
                 "link": shareData.link,
                 "desc": shareData.content,
                 "title": shareData.title
@@ -85,9 +85,9 @@
         });
         WeixinJSBridge.on("menu:share:timeline", function(argv) {
             WeixinJSBridge.invoke("shareTimeline", {
-                "img_url": shareData.imgurl,
-                "img_width": "640",
-                "img_height": "640",
+                "img_url": shareData.img,
+                "img_width": "320",
+                "img_height": "320",
                 "link": shareData.link,
                 "desc": shareData.content,
                 "title": shareData.title
