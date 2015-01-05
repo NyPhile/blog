@@ -6,14 +6,47 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0">
 	<style type="text/css">
 		html,body{height: 100%;}*{margin: 0;padding: 0;font-family: "微软雅黑";line-height: 1;position: relative;}
-		.top,.btm{height: 33.3%;text-align: center;color: #fff;font-size:2em;display: -webkit-flex;position: relative;}
+		.top,.btm{height: 33.3%;text-align: center;color: #fff;font-size:2em;position: relative;overflow: hidden;}
 		.top{background: #46C579;}.btm{background: #3CAC69;}
 		.btn{height:33.3%;font-family: Arial;font-size: 2em;text-align: center;display: -webkit-flex;}
-		p{margin: auto;}span{position: absolute;font-size: 0.5em;color: rgba(255,255,255,0.75);right: 1em;bottom: 1em;display: none;}
-		.btn p{padding: 0 2em;border:1px solid #3CAC69;border-radius: 2em;line-height: 2em;color: #3CAC69;}
+		.lock{position: absolute;font-size: 0.5em;color: rgba(255,255,255,0.75);right: 1em;bottom: 1em;display: none;z-index: 99;}
+		.btn p{padding: 0 2em;border:1px solid #3CAC69;border-radius: 2em;line-height: 2em;color: #3CAC69;margin: auto;}
 		.welcome{position: absolute;left: 0;top: 0;width: 100%;height: 100%;background:#fff; z-index: 10;overflow: hidden;}
 		.page_top,.page_btm{width: 100%;height:100%;display: -webkit-flex;color: #fff;font-size: 2em;background: #46C579;}
+		.page_top p,.page_btm p{margin:auto;}
 		.page_btm{background: #3CAC69;height: 50%;position: relative;}
+		.item {position: absolute;width: 100%;height: 100%;left: 0;top: 0;display: -webkit-flex;opacity: 0;}
+		.item span{margin:auto;}
+		.active{-webkit-animation: push-in 0.6s;opacity: 1;}
+		.none{-webkit-animation: push-out 0.6s;opacity: 0;}
+		@-webkit-keyframes push-in {
+			0% {
+			  opacity: 0;
+			  -webkit-transform: translateX(100%);
+			}
+			60% {
+			  opacity: 1;
+			  -webkit-transform: translateX(-10%);
+			}
+			100% {
+			  opacity: 1;
+			  -webkit-transform: translateX(0%);
+			}
+		}
+		@-webkit-keyframes push-out {
+			0% {
+			  opacity: 1;
+			  -webkit-transform: translateX(0);
+			}
+			60% {
+			  opacity: 0;
+			  -webkit-transform: translateX(-110%);
+			}
+			100% {
+			  opacity: 0;
+			  -webkit-transform: translateX(-100%);
+			}
+		}
 	</style>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
@@ -25,8 +58,12 @@
 			<p>shake</p>
 		</div>
 	</div>
-	<div class="top" id="top" onclick="lockp1()"><p id="p1">土豆</p><span>锁定</span></div>
-	<div class="btm" id="btm" onclick="lockp2()"><p id="p2">好吃</p><span>锁定</span></div>
+	<div class="top" id="top" onclick="lockp1()">
+		<span class="lock">锁定</span><div class="item active"><span>土豆</span></div>
+	</div>
+	<div class="btm" id="btm" onclick="lockp2()">
+		<span class="lock">锁定</span><div class="item active"><span>好吃</span></div>
+	</div>
 	<div class="btn" id="btn">
 		<p onclick="shake()">shake</p>
 	</div>
@@ -40,15 +77,15 @@
 			$(".welcome").animate({opacity: '0'},500);
 			var t=setTimeout("$('.welcome').hide()",500);
 		}
-		var lockp1flag = 0;var lockp2flag = 0;
+		var lockp1flag = 0, lockp2flag = 0,p1index = 0,p2index = 0;
 		function lockp1 () {
 			if(lockp1flag == 0){
 				lockp1flag = 1;
-				$("#top span").show();
+				$("#top .lock").show();
 			}
 			else{
 				lockp1flag = 0;
-				$("#top span").hide();
+				$("#top .lock").hide();
 			}
 		}
 		function lockp2 () {
@@ -65,10 +102,16 @@
 			var i = parseInt(_char.length*Math.random());
 			var j = parseInt(_char.length*Math.random());
 			if(!lockp1flag){
-				$("#p1").html(_char[i]);
+				$($("#top .item")[p1index]).after('<div class="item none"><span>'+_char[i]+'</span></div>');
+				$("#top .active").removeClass("active").addClass("none");
+				p1index+=1;
+				$($("#top .item")[p1index]).removeClass("none").addClass("active");	
 			}
 			if(!lockp2flag){
-				$("#p2").html(_char[j]);
+				$($("#btm .item")[p2index]).after('<div class="item none"><span>'+_char[j]+'</span></div>');
+				$("#btm .active").removeClass("active").addClass("none");
+				p2index+=1;
+				$($("#btm .item")[p2index]).removeClass("none").addClass("active");	
 			}
 			if(lockp1flag && lockp2flag){
 				alert("全锁了！怎么换嘛！");
@@ -122,13 +165,13 @@
 		};
 		touches($("#top")[0],"swipeleft",aaa);
 		touches($("#top")[0],"swiperight",bbb);
+		touches($("#btm")[0],"swipeleft",aaa);
+		touches($("#btm")[0],"swiperight",bbb);
 		function aaa(){
-			var i = parseInt(_char.length*Math.random());
-			$("#p1").html(_char[i]);
+			shake();
 		}
 		function bbb(){
-			var i = parseInt(_char.length*Math.random());
-			$("#p1").html(_char[i]);
+			shake();
 		}
 	</script>
 </body>
