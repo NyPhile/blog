@@ -15,38 +15,13 @@
 		.page_top,.page_btm{width: 100%;height:100%;display: -webkit-flex;color: #fff;font-size: 2em;background: #46C579;}
 		.page_top p,.page_btm p{margin:auto;}
 		.page_btm{background: #3CAC69;height: 50%;position: relative;}
-		.item {position: absolute;width: 100%;height: 100%;left: 0;top: 0;display: -webkit-flex;opacity: 0;}
-		.item span{margin:auto;}
-		.active{-webkit-animation: push-in 0.6s;opacity: 1;}
-		.none{-webkit-animation: push-out 0.6s;opacity: 0;}
-		@-webkit-keyframes push-in {
-			0% {
-			  opacity: 0;
-			  -webkit-transform: translateX(100%);
-			}
-			60% {
-			  opacity: 1;
-			  -webkit-transform: translateX(-10%);
-			}
-			100% {
-			  opacity: 1;
-			  -webkit-transform: translateX(0%);
-			}
+		.top ul,.btm ul{
+			position: absolute;left: 0;top: 0;
+			width: 100%;height: 100%;
 		}
-		@-webkit-keyframes push-out {
-			0% {
-			  opacity: 1;
-			  -webkit-transform: translateX(0);
-			}
-			60% {
-			  opacity: 0;
-			  -webkit-transform: translateX(-110%);
-			}
-			100% {
-			  opacity: 0;
-			  -webkit-transform: translateX(-100%);
-			}
-		}
+		.top ul li,.btm ul li{width: 100%;height: 100%;float: left;display: -webkit-flex;position: absolute;left: 100%;}
+		.top ul li.active,.btm ul li.active{left: 0;}
+		.top ul span,.btm ul span{margin:auto;}
 	</style>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
@@ -59,10 +34,16 @@
 		</div>
 	</div>
 	<div class="top" id="top" onclick="lockp1()">
-		<span class="lock">锁定</span><div class="item active"><span>土豆</span></div>
+		<span class="lock">锁定</span>
+		<ul>
+			<li class="active"><span>土豆</span></li>
+		</ul>
 	</div>
 	<div class="btm" id="btm" onclick="lockp2()">
-		<span class="lock">锁定</span><div class="item active"><span>好吃</span></div>
+		<span class="lock">锁定</span>
+		<ul>
+			<li class="active"><span>好吃</span></li>
+		</ul>
 	</div>
 	<div class="btn" id="btn">
 		<p onclick="shake()">shake</p>
@@ -70,6 +51,8 @@
 	<script type="text/javascript">
 		var _char = [ "高速铁路","达·芬奇","存款","火腿","杀人游戏","自驾游","玄关","文化遗产","队长","报纸","移动","编程","等级","点数","文章","匿名","银行","杂志","灰色","法律","功能","海参","股票","新秀","场所","单身公寓","舞蹈","线索"];
 		$(".page_top").animate({height:'50%'},1200,step2);
+		loadwords(10,"#top");
+		loadwords(10,"#btm");
 		function step2 () {
 			var t=setTimeout("$('.page_top').animate({height:'33.3%'},1200,step3);$('.page_btm').animate({height:'33.3%'},1200)",1000)	
 		}
@@ -99,24 +82,42 @@
 			}	
 		}
 		function shake(){
-			var i = parseInt(_char.length*Math.random());
-			var j = parseInt(_char.length*Math.random());
 			if(!lockp1flag){
-				$($("#top .item")[p1index]).after('<div class="item none"><span>'+_char[i]+'</span></div>');
-				$("#top .active").removeClass("active").addClass("none");
-				p1index+=1;
-				$($("#top .item")[p1index]).removeClass("none").addClass("active");	
+				$($("#top ul li")[p1index]).animate({left:"-"+$("#top").width()+"px"},300);
+				$($("#top ul li")[p1index+1]).animate({left:"10px"},300);
+				$($("#top ul li")[p1index]).removeClass("active");
+				setTimeout(function () {
+					$($("#top ul li")[p1index+1]).addClass("active");
+					p1index+=1;
+				},300)
+				
+				if(p1index<($("#top ul li").length-3)){
+					loadwords(10,"#top");
+				}
 			}
 			if(!lockp2flag){
-				$($("#btm .item")[p2index]).after('<div class="item none"><span>'+_char[j]+'</span></div>');
-				$("#btm .active").removeClass("active").addClass("none");
+				$($("#btm ul li")[p2index]).animate({left:"-100%"},300);
+				$($("#btm ul li")[p2index+1]).animate({left:"0"},300);
+				$($("#btm ul li")[p2index]).removeClass("active");
+				setTimeout(function () {
+					$($("#btm ul li")[p2index+1]).removeClass("active");
+				},300)
 				p2index+=1;
-				$($("#btm .item")[p2index]).removeClass("none").addClass("active");	
+				if(p2index<($("#btm ul li").length-3)){
+					loadwords(10,"#btm");
+				}
 			}
 			if(lockp1flag && lockp2flag){
 				alert("全锁了！怎么换嘛！");
 			}
-		};
+		}
+		function loadwords (number,torb) {
+			$(torb+" li").width($("#top").width());
+			for (var i = 0; i < number; i++) {
+				$(torb+" ul")[0].innerHTML += '<li><span>'+ _char[parseInt(_char.length*Math.random())]+'</span></li>';
+			}
+			$(torb+" li").width($("#top").width());
+		}
 		// 滑动事件
 		function touches(obj,direction,fun){
 			//obj:ID对象
