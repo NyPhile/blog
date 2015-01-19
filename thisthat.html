@@ -23,6 +23,7 @@
 		.top ul li.active,.btm ul li.active{left: 0px;}
 		.top ul li.left,.btm ul li.left{left: -100%;}
 		.top ul span,.btm ul span{margin:auto;}
+		.filter{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 999;display: none;}
 	</style>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
@@ -49,6 +50,7 @@
 	<div class="btn" id="btn">
 		<p onclick="shake()">点击</p>
 	</div>
+	<div class="filter"></div>
 	<script type="text/javascript">
 		var _char = [ "高速铁路","达·芬奇","存款","火腿","杀人游戏","自驾游","玄关","文化遗产","队长","报纸","移动","编程","等级","点数","文章","匿名","银行","杂志","灰色","法律","功能","海参","股票","新秀","场所","单身公寓","舞蹈","线索"];
 		var words = {"words":[{"content":"3d打印","id":null},{"content":"中国队","id":null},{"content":"葫芦娃","id":null},{"content":"语音","id":null},{"content":"词典","id":null},{"content":"考拉","id":null},{"content":"阿童木","id":null},{"content":"肖恩羊","id":null},{"content":"奇趣蛋","id":null},{"content":"冰欺凌机","id":null},{"content":"冰淇凌","id":null},{"content":"电影院","id":null},{"content":"咖啡","id":null},{"content":"香水","id":null},{"content":"纸巾","id":null},{"content":"猫","id":null},{"content":"小龙女","id":null},{"content":"鸡腿","id":null},{"content":"充电器","id":null},{"content":"口罩","id":null},{"content":"眼镜","id":null},{"content":"跑步机","id":null},{"content":"急支糖浆","id":null},{"content":"计算机","id":null},{"content":"奶茶","id":null},{"content":"网购","id":null},{"content":"摇滚","id":null},{"content":"排练室","id":null},{"content":"KTV","id":null},{"content":"预定","id":null},{"content":"旅游","id":null},{"content":"机票","id":null},{"content":"支付","id":null},{"content":"日程表","id":null},{"content":"胸罩","id":null},{"content":"布娃娃","id":null},{"content":"气球","id":null},{"content":"袜子","id":null},{"content":"上课","id":null},{"content":"占座","id":null},{"content":"笔记","id":null},{"content":"黑板","id":null},{"content":"路由器","id":null},{"content":"投影仪","id":null},{"content":"女性","id":null},{"content":"游戏","id":null},{"content":"高清","id":null},{"content":"购物","id":null},{"content":"育儿","id":null},{"content":"o2o","id":null},{"content":"金融","id":null},{"content":"免费电话","id":null},{"content":"垂直电商","id":null},{"content":"智能硬件","id":null},{"content":"平台","id":null},{"content":"小伙伴们快来填词啦～～","id":null},{"content":"大姨妈","id":null},{"content":"摩擦","id":null}],"version":3};
@@ -88,6 +90,13 @@
 				$("#top .active").removeClass("active").addClass("left");
 				$($("#top li")[p1index+1]).addClass("active");
 				p1index+=1;
+				$(".filter").show();
+				setTimeout(function(){
+					if(p1index<($("#top ul li").length-3)){
+						loadwords(10,"#top");
+					}
+					$(".filter").hide();
+				},500)
 			}
 		}
 		function nextBtm() {
@@ -95,6 +104,13 @@
 				$("#btm .active").removeClass("active").addClass("left");
 				$($("#btm li")[p2index+1]).addClass("active");
 				p2index+=1;
+				$(".filter").show();
+				setTimeout(function(){
+					if(p2index<($("#btm li").length-3)){
+						loadwords(10,"#btm");
+					}
+					$(".filter").hide();
+				},500)
 			}
 		}
 		function preTop(){
@@ -113,20 +129,10 @@
 		}
 		function shake(){
 			if(!lockp1flag){
-				nextTop();
-				setTimeout(function(){
-					if(p1index<($("#top ul li").length-3)){
-						loadwords(10,"#top");
-					}
-				},500)				
+				nextTop();				
 			}
 			if(!lockp2flag){
 				nextBtm();
-				setTimeout(function(){
-					if(p2index<($("#btm li").length-3)){
-						loadwords(10,"#btm");
-					}
-				},500)
 			}
 			if(lockp1flag && lockp2flag){
 				alert("全锁了！怎么换嘛！");
