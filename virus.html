@@ -13,7 +13,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <style>
-	* {
+* {
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -24,6 +24,7 @@ ol {
 }
 body {
   width: 100%;
+  overflow: hidden;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -212,7 +213,7 @@ body {
 </style>
 </head>
 <body>
-<div class="body" id="body" style="margin-left:-100%">
+<div class="body" id="body" style="margin-left:;">
 	<div class="virus_wrap" id="virus_wrap">
 		<div class="nav">
 			<div class="search"></div>
@@ -371,7 +372,7 @@ body {
 			</ul>
 		</div>
 	</div>
-	<div class="detail_wrap" id="detail_wrap">
+	<div class="detail_wrap" id="detail_wrap" style="display:none;">
 		<div class="nav">
 			<div class="back" id="back">首页</div>
 			<div class="d_menu"></div>
@@ -421,6 +422,8 @@ body {
 	for (var i = 0; i < aLine.length; i++) {
 		aLine[i].onclick = function(){
 			var body = document.getElementById('body');
+			document.getElementById('detail_wrap').style.display = "block";
+			document.body.scrollTop = 0;
 			body.style.marginLeft = '-100%';
 		}
 	};
@@ -428,6 +431,10 @@ body {
 	back.onclick = function () {
 		var body = document.getElementById('body');
 		body.style.marginLeft = 0;
+		document.body.scrollTop = 0;
+		setTimeout(function(){
+			document.getElementById('detail_wrap').style.display = "none";
+		},500);
 	}
 </script>
 </body>
