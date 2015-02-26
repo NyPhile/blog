@@ -9,18 +9,31 @@
 <meta name="cms_id" content="0026" />
 <meta name="model_url" content="${modelUrl}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>病毒百科</title>
+<title>virus</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <style>
 	* {
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 ul,
 ol {
   list-style: none;
+}
+body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.body {
+  position: relative;
+  width: 100%;
+  transition: 0.5s all ease;
+}
+.virus_wrap {
+  width: 100%;
 }
 .nav {
   height: 44px;
@@ -38,6 +51,30 @@ ol {
   width: 44px;
   height: 44px;
   background: url(images/sprite.png) no-repeat -24px 12px;
+  background-size: 320px 320px;
+}
+.nav .d_menu {
+  float: right;
+  width: 44px;
+  height: 44px;
+  background: url(images/sprite.png) no-repeat -24px -27px;
+  background-size: 320px 320px;
+}
+.nav .back {
+  float: left;
+  width: 44px;
+  height: 44px;
+  padding-left: 24px;
+  background: url(images/sprite.png) no-repeat -92px 12px;
+  background-size: 320px 320px;
+  font: 16px/44px "微软雅黑";
+  color: #fff;
+}
+.nav .d_search {
+  float: right;
+  width: 44px;
+  height: 44px;
+  background: url(images/sprite.png) no-repeat 12px -27px;
   background-size: 320px 320px;
 }
 .nav .title {
@@ -59,13 +96,16 @@ ol {
 .cnt .ttl i {
   display: block;
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 32px;
-  height: 42px;
-  background: url(images/sprite.png) no-repeat -63px 7px;
+  left: 10px;
+  top: 17px;
+  width: 11px;
+  height: 8px;
+  background: url(images/sprite.png) no-repeat -74px -9px;
   background-size: 320px 320px;
   -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
 }
 .cnt .ttl h2 {
   font: 16px/42px "微软雅黑";
@@ -103,184 +143,292 @@ ol {
 .cnt .current .content {
   height: auto;
 }
+/*detail*/
+.detail_wrap {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+.detail_wrap .detail_title {
+  background: #2994e2;
+  padding-top: 12px;
+}
+.detail_wrap .detail_title .avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+.detail_wrap .detail_title .avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.detail_wrap .detail_title h2 {
+  padding: 15px 12px 0;
+  text-align: center;
+  font: 14px/16px "微软雅黑";
+  color: #fff;
+}
+.detail_wrap .detail_title p {
+  padding: 5px 12px 6px;
+  font: 12px/14px "微软雅黑";
+  color: #fff;
+  text-align: center;
+}
+.detail_wrap .detail_body .ttl {
+  height: 35px;
+  padding: 0 12px;
+  border-bottom: 1px solid #dedfe1;
+  background: #f2f2f2;
+  font: 12px/35px "微软雅黑";
+  color: #999;
+}
+.detail_wrap .detail_body .d_line {
+  height: 42px;
+  padding: 0 12px;
+  border-bottom: 1px solid #dedfe1;
+  font: 14px/42px "微软雅黑";
+}
+.detail_wrap .detail_body .d_line .name {
+  float: left;
+  width: 73px;
+  color: #b3b3b3;
+}
+.detail_wrap .detail_body .d_line .info {
+  float: left;
+  color: #000;
+}
+.detail_wrap .detail_body .content {
+  padding: 8px 12px;
+  font: 14px/24px "微软雅黑";
+  color: #000;
+}
 
 </style>
 </head>
 <body>
-<div class="virus_wrap" id="virus_wrap">
-	<div class="nav">
-		<div class="search"></div>
-		<div class="menu"></div>
-		<div class="title">病毒百科</div>
+<div class="body" id="body" style="margin-left:-100%">
+	<div class="virus_wrap" id="virus_wrap">
+		<div class="nav">
+			<div class="search"></div>
+			<div class="menu"></div>
+			<div class="title">病毒百科</div>
+		</div>
+		<div class="cnt">
+			<ul id="cnt">
+				<li class="current">
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win37.NiLnge.a</h3>
+							<p>尼葛拉</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win36</h3>
+							<p>&nbsp;</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ttl">
+						<i></i>
+						<h2>Trojanm</h2>
+						<span>木马</span>
+					</div>
+					<div class="content">
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+						<div class="line">
+							<h3>Trojanm.PSW.win39</h3>
+							<p>白金远控制</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div class="cnt">
-		<ul id="cnt">
-			<li class="current">
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="ttl">
-					<i></i>
-					<h2>Trojanm</h2>
-					<span>木马</span>
-				</div>
-				<div class="content">
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-					<div class="line">
-						<h3>Trojanm.PSW.win39</h3>
-						<p>白金远控制</p>
-					</div>
-				</div>
-			</li>
-		</ul>
+	<div class="detail_wrap" id="detail_wrap">
+		<div class="nav">
+			<div class="back" id="back">首页</div>
+			<div class="d_menu"></div>
+			<div class="d_search"></div>
+		</div>
+		<div class="detail_title">
+			<div class="avatar">
+				<img src="images/virus1.png" alt="">
+			</div>
+			<h2>Trojan[GameThief]/Win32.OnLineGames</h2>
+			<p>网游盗号木马</p>
+		</div>
+		<div class="detail_body">
+			<div class="ttl">基本信息</div>
+			<div class="d_line">
+				<div class="name">平台</div>
+				<div class="info">PC</div>
+			</div>
+			<div class="d_line">
+				<div class="name">类型</div>
+				<div class="info">Trojan</div>
+			</div>
+			<div class="d_line">
+				<div class="name">发现时间</div>
+				<div class="info">1999</div>
+			</div>
+			<div class="ttl">说明</div>
+			<div class="content">OnLineGames是对针对网络游戏用户进行侵害的木马的统称，这种木马通常被攻击者用来盗取网络游戏账号、密码和其他的虚拟财产信息进行牟利。这类病毒本身一般不会对抗杀毒软件，但经常伴随着AV终结者、机器狗等病毒出现。OnLineGames家族中的木马窃取用户信息的方法是多种多样的，包括劫持用户的输入，获取本地的配置信息、获取内存数据、监听网络数据包等等。在获取到信息后，木马程序会通过电子邮件、HTTP提交、Socket接口等不同方式，提交这些信息，攻击</div>
+		</div>
 	</div>
-
 </div>
-
 <script>
 	var aLi = document.getElementById('cnt').getElementsByTagName('li');
 	for (var i = 0; i < aLi.length; i++) {
 		aLi[i].index = i;
-		aLi[i].onclick = function () {
-			if (this.className == "current") {
-				this.className = '';
-				this.getElementsByClassName('content')[0].style.height = 0;
+		aLi[i].getElementsByClassName('ttl')[0].onclick = function () {
+			if (this.parentNode.className == "current") {
+				this.parentNode.className = '';
+				this.parentNode.getElementsByClassName('content')[0].style.height = 0;
 			}else{
-				this.className = 'current';
-				this.getElementsByClassName('content')[0].style.height = 'auto';
+				this.parentNode.className = 'current';
+				this.parentNode.getElementsByClassName('content')[0].style.height = 'auto';
 			}
 		}
 	};
+	var aLine = document.getElementsByClassName('line');
+	for (var i = 0; i < aLine.length; i++) {
+		aLine[i].onclick = function(){
+			var body = document.getElementById('body');
+			body.style.marginLeft = '-100%';
+		}
+	};
+	var back = document.getElementById('back');
+	back.onclick = function () {
+		var body = document.getElementById('body');
+		body.style.marginLeft = 0;
+	}
 </script>
 </body>
 </html>
