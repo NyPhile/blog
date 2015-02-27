@@ -55,6 +55,9 @@ body * {
   font: 16px/44px "微软雅黑";
   color: #fff;
 }
+.nav .back:hover {
+  color: #fff;
+}
 .nav .d_search {
   float: right;
   width: 44px;
