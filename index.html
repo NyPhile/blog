@@ -5,177 +5,27 @@
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0, maximum-scale=1.0">
 	<title>Blog by NyPhile</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
+	<link rel="stylesheet" href="stylesheets/main.css">
 </head>
 
 <body>
-<div class="bg">
-	<div class="wrap">
-		<nav id="nav">
-			<ul>
-				<li class="on"><a href="/blog/">首页</a></li>
-				<li><a href="/blog/">爱好</a></li>
-				<li><a href="/blog/">技术</a></li>
-				<li><a href="/blog/">闲扯</a></li>
-				<li><a href="404.html">试验</a></li>
-				<li id="nav-current"></li>
-			</ul>
-		</nav>
-		<section class="bd">
-			<div class="profile">
-				<div class="avatar">
-					<div class="cnt">
-						<div class="f"></div>
-						<div class="e"></div>
-					</div>
-				</div>
-				<h1>王震</h1>
-				<h2>NyPhile</h2>
-				<p class="place">中国&bull;北京</p>
-				<div class="linkme">
-					<a href="http://weibo.com/nyphile" target="_blank" class="weibo"> 王震-NyPhile <span>(weibo.com/nyphile)</span></a>
-					<a href="https://github.com/NyPhile" target="_blank" class="github"> NyPhile <span>(github.com/NyPhile)</span></a>
-				</div>
-			</div>
-		</section>
-	</div>
+<div class="filter"></div>
+<div class="body">
+	<nav>
+		<a href="" class="home" title="ZZ - BLOG HOME">ZZ - blog</a>
+		<a href="" class="item">OTHER</a>
+		<a href="" class="item">SKILL</a>
+		<a href="" class="item">INTEREST</a>
+		<a href="" class="item current">HOME</a>
+	</nav>
+	<section class="content">
+		<h2>王震 NyPhile</h2>
+		<ul>
+			<li>中国 · 北京</li>
+			<li><a href="http://weibo.com/nyphile/" target="_blank">王震-NyPhile <span>(weibo.com/nyphile)</span></a></li>
+			<li><a href="https://github.com/NyPhile" target="_blank">ZZ-NyPhile <span>(github.com/NyPhile)</span></a></li>
+		</ul>
+	</section>
 </div>
-<script src="http://pimg1.126.net/caipiao/js2/jquery-1.4.2.js?v=227030"></script>
-<script type="text/javascript">
-	jQuery(function($){	
-		
-		//to-top
-		$(window).scroll(function(){
-			if ($(this).scrollTop() >= 30) {
-				if (!$(".to-top").hasClass("topbtnfadein"))
-					$(".to-top").removeClass("topbtnfadeout topbtnhide").addClass("topbtnfadein topbtnshow").removeClass("topbtnfadein");
-				//$(".to-top").stop().animate({bottom: 30, opacity: 100});
-			} else {
-				if (!$(".to-top").hasClass("topbtnfadeout"))
-					$(".to-top").removeClass("topbtnfadein topbtnshow").addClass("topbtnfadeout topbtnhide").removeClass("topbtnfadeout");
-			}
-		})
-		
-		$(".to-top").click(function(){
-			$("body, html").stop().animate({scrollTop:0});
-		});
-
-		//menu
-		var idxY = null;
-		idxY=-15;
-		$("#nav ul li").each(function(){
-			var navY = $(this).position().left;
-			if ($(this).hasClass("on") || $(this).hasClass('current-category-ancestor') || $(this).hasClass("current-post-ancestor")) {
-				idxY = navY;
-			}
-			$("#nav-current").css({left: idxY});
-			$(this).mouseenter(function(){
-				$("#nav-current").stop().animate({left: navY}, 300);
-			});
-		});
-		$("#nav ul").mouseleave(function(){
-			$("#nav-current").stop().animate({left: idxY}, 500);
-		});
-		
-		//Switch of screen width controller
-		$(".wider-switch").click(function(){
-			if ($(this).find('i').hasClass('fa-expand')) {
-				toWider();
-			} else {
-				toNarrow();
-			}
-		}); 
-
-		var listHideLeft = 110;
-		var showLeft = 320;
-		var weiboHideLeft = 60;
-		var toWider = function(){
-			listHideLeft = -150;
-			weiboHideLeft = -200;
-			showLeft = 60;
-			$(".left").css('left', '-260px').addClass('iswider');
-			$(".container").css('margin-left', '80px');
-			$('.list').css('left', listHideLeft);
-			$('.weibo-show').css('left', weiboHideLeft);
-			$(".wider-switch").find('i').removeClass('fa-expand').addClass('fa-compress');
-			setCookie('widerCookie',"true", 86400);
-		}
-		var toNarrow = function(){
-			listHideLeft = 110;
-			weiboHideLeft = 60;
-			showLeft = 320;
-			$(".wider-switch").find('i').removeClass('fa-compress').addClass('fa-expand');
-			$(".left").css('left', '0').removeClass('iswider');
-			$(".container").css('margin-left', '340px');
-			$('.list').css('left', listHideLeft);
-			$('.weibo-show').css('left', weiboHideLeft);
-			setCookie('widerCookie',"false", 86400);
-		}
-		// if (getCookie('widerCookie')=='true') {
-		// 	toWider();
-		// } else {
-		// 	toNarrow();
-		// }
-		
-		//side icon
-		$(".icon-category").click(function(){
-			if ($(this).hasClass("list-open")) {
-				$(this).removeClass('list-open').children('span').html('展开分类目录');
-				$(".list").stop().animate({left: listHideLeft}, 500);
-			}
-			else {
-				$(this).addClass('list-open').children('span').html('关闭分类目录');
-				if ($('.sns-weibo').hasClass('sns-weibo-open'))
-				{
-					$('.sns-weibo').click();
-				}
-				$(".list").stop().animate({left: showLeft}, 500);
-			}
-		});
-		$(".sns-weibo").click(function(){
-			if ($(this).hasClass("sns-weibo-open")) {
-				$(this).removeClass('sns-weibo-open').children('span').html('展开微博窗口');
-				$(".weibo-show").stop().animate({left: weiboHideLeft}, 500);
-			}
-			else {
-				$(this).addClass('sns-weibo-open').children('span').html('关闭微博窗口');
-				if ($('.icon-category').hasClass('list-open'))
-				{
-					$('.icon-category').click();
-				}
-				$(".weibo-show").stop().animate({left: showLeft}, 500);
-			}
-		});
-		
-		
-		document.addEventListener("touchstart", function(){}, true);
-		
-		//Sidebox Close and Open 
-		$(".sidebox > h2").click(function(){
-			if ($(this).parent().height()>50) {
-				$(this).parent().height(50);
-			} else {
-				$(this).parent().height('');
-			}
-		});
-		
-		//#categories
-		$("#categories").find('select').change(function(){
-			window.location.href=$(this).val();
-		});
-		
-		//loading 
-		$('.loading').animate({'width':'95%'},9000);
-		$(window).load(function()
-		{
-			$('.circle-loading').fadeOut(300);
-			$('.loading').stop().animate({'width':'100%'},300,function()
-			{
-				$(this).fadeOut(300);
-			});
-		});
-		
-	});
-</script>
 </body>
 </html>

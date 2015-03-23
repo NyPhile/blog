@@ -1,0 +1,130 @@
+/*	general style - by NyPhile */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+@yh:"微软雅黑";
+@sun:"SimSun";
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1; font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "microsoft yahei", sans-self;min-height: 100%;
+}
+html{min-height: 100%;}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+header, footer, section {
+	display: block;
+	position: relative;
+}
+
+a{
+	text-decoration: none;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-ms-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+/* STYLES */
+body{
+	background: rgba(0,0,0,1);
+}
+.filter{
+	position: absolute;left: 0;top: 0;right: 0;bottom: 0;opacity: 0.7;
+	background: url(../images/home_bg.jpg) no-repeat top center;background-size: cover;
+}
+.body{
+	position: absolute;left: 0;top: 0;right: 0;bottom: 0;
+}
+nav{
+	margin: 0 80px;padding: 40px 20px;height: 52px;
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	a.home{
+		display: block;float: left;
+		width: 151px;height: 52px;overflow: hidden;
+		background: url(../images/home.png) no-repeat;background-size: 200px 200px;
+		font-size: 0;line-height: 999;
+	}
+	a.item{
+		float: right;
+		margin-left: 40px;margin-top: 35px;
+		font:24px/24px 'PTSans','Myriad Pro';color: #fff;
+		&:hover{color:rgba(255,255,255,0.6);}
+	}
+	a.item.current{color: #f6ba17;font-weight: bold;}
+}
+.content{
+	margin: 100px;
+	h2{
+		font:32px/2 @yh;color: #fff;
+	}
+	ul{
+		font:18px/20px @yh;color: #c4c8cd;
+		li{
+			-webkit-transition: all 0.2s ease-out;
+			-moz-transition: all 0.2s ease-out;
+			-ms-transition: all 0.2s ease-out;
+			-o-transition: all 0.2s ease-out;
+			transition: all 0.2s ease-out;
+			cursor: normal;
+			a{color: #c4c8cd}
+			span{font-size: 14px;}
+		}
+		li:nth-child(1){
+			float:left;
+			clear: both;
+			padding-left:30px;
+			background: url(../images/home.png) no-repeat -182px 0;background-size: 200px 200px;
+			&:hover{;background-position: -182px -22px;};
+		}
+		li:nth-child(2){
+			float:left;
+			clear: both;
+			padding-left:30px;margin-top: 30px;
+			background: url(../images/home.png) no-repeat -182px -51px;background-size: 200px 200px;
+			&:hover{;background-position: -182px -69px;};
+		}
+		li:nth-child(3){
+			float:left;
+			clear: both;
+			padding-left:30px;margin-top: 30px;
+			background: url(../images/home.png) no-repeat -182px -87px;background-size: 200px 200px;
+			&:hover{;background-position: -182px -104px;};
+		}
+	}
+}
