@@ -1,0 +1,413 @@
+body {
+  background: #000;
+}
+.loading {
+  /*display: none;*/
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/loading_bg.jpg) no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.loading .title {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 750px;
+  height: 664px;
+  margin-top: -560px;
+  background: url(../img/sprite.png) no-repeat 0 0;
+}
+.loading .slogan {
+  position: absolute;
+  left: 220px;
+  top: 50%;
+  width: 290px;
+  height: 38px;
+  margin-top: 130px;
+  background: url(../img/sprite.png) no-repeat 0 -670px;
+}
+.loading .logo {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  width: 260px;
+  height: 42px;
+  background: url(../img/sprite.png) no-repeat 0 -720px;
+}
+.loading .process {
+  position: absolute;
+  top: 50%;
+  left: 170px;
+  width: 410px;
+  height: 44px;
+  margin-top: 230px;
+  background: url(../img/sprite.png) no-repeat -300px -670px;
+}
+.loading .process i {
+  position: absolute;
+  left: 13px;
+  top: 13px;
+  height: 18px;
+  width: 100px;
+  max-width: 384px;
+  background: #36be83;
+  border-radius: 9px;
+}
+.loading .process_number {
+  position: absolute;
+  top: 50%;
+  left: 170px;
+  width: 420px;
+  margin-top: 320px;
+  font: 60px/1 "Microsoft Yahei";
+  color: #0a5e35;
+  text-align: center;
+}
+.map {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/map_bg.jpg) no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.map .k {
+  opacity: 0;
+  -webkit-transform: translate(0, -200px);
+  -ms-transform: translate(0, -200px);
+  -o-transform: translate(0, -200px);
+  transform: translate(0, -200px);
+}
+.map .putin {
+  position: absolute;
+  left: 582px;
+  top: 40px;
+  -webkit-transition: 200ms linear 0ms;
+  -o-transition: 200ms linear 0ms;
+  transition: 200ms linear 0ms;
+}
+.map .putin .avatar {
+  background-position: -134px -770px;
+}
+.map .putin .name {
+  left: -110px;
+  top: 140px;
+  background-position: -505px -930px;
+}
+.map .kate {
+  position: absolute;
+  left: 300px;
+  top: 166px;
+  -webkit-transition: 200ms linear 100ms;
+  -o-transition: 200ms linear 100ms;
+  transition: 200ms linear 100ms;
+}
+.map .kate .avatar {
+  background-position: -270px -770px;
+}
+.map .kate .name {
+  left: -150px;
+  top: 140px;
+  background-position: 0 -1004px;
+}
+.map .makron {
+  position: absolute;
+  left: 530px;
+  top: 350px;
+  -webkit-transition: 200ms linear 200ms;
+  -o-transition: 200ms linear 200ms;
+  transition: 200ms linear 200ms;
+}
+.map .makron .avatar {
+  background-position: -404px -770px;
+}
+.map .makron .name {
+  left: -150px;
+  top: 140px;
+  background-position: 0 -930px;
+}
+.map .trudeau {
+  position: absolute;
+  left: auto;
+  top: auto;
+  right: 286px;
+  bottom: 532px;
+  -webkit-transition: 200ms linear 300ms;
+  -o-transition: 200ms linear 300ms;
+  transition: 200ms linear 300ms;
+}
+.map .trudeau .avatar {
+  background-position: 0px -770px;
+}
+.map .trudeau .name {
+  left: -80px;
+  top: 140px;
+  background-position: -252px -930px;
+}
+.map .trump {
+  position: absolute;
+  left: 60px;
+  top: auto;
+  bottom: 420px;
+  -webkit-transition: 200ms linear 400ms;
+  -o-transition: 200ms linear 400ms;
+  transition: 200ms linear 400ms;
+}
+.map .trump .avatar {
+  background-position: -538px -770px;
+}
+.map .trump .name {
+  left: -20px;
+  top: 170px;
+  background-position: -505px -1004px;
+}
+.map .ivanka {
+  position: absolute;
+  left: 330px;
+  top: auto;
+  bottom: 234px;
+  -webkit-transition: 200ms linear 500ms;
+  -o-transition: 200ms linear 500ms;
+  transition: 200ms linear 500ms;
+}
+.map .ivanka .avatar {
+  background-position: -672px -770px;
+}
+.map .ivanka .name {
+  left: 120px;
+  top: 120px;
+  background-position: -252px -1004px;
+}
+.map .avatar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 133px;
+  height: 155px;
+  background: url(../img/sprite.png) no-repeat 0 -770px;
+}
+.map .name {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 72px;
+  background: url(../img/sprite.png) no-repeat 0 -930px;
+}
+.map .europe,
+.map .america {
+  position: absolute;
+  left: 44px;
+  top: 70px;
+  width: 176px;
+  height: 130px;
+  background: url(../img/sprite.png) no-repeat 0 -1080px;
+}
+.map .america {
+  left: 80px;
+  top: 50%;
+  background-position: -180px -1080px;
+}
+.map.active .k {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.edit {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffebbd;
+}
+.edit .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 186px;
+  width: 100%;
+  background: url(../img/edit_header.png) no-repeat;
+}
+.edit .header .return {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 180px;
+}
+.edit .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  width: 100%;
+  background: url(../img/edit_footer.png) no-repeat;
+}
+.edit .footer input {
+  opacity: 0;
+  position: absolute;
+  left: 00px;
+  top: 0;
+  width: 550px;
+  height: 100%;
+}
+.edit .footer #toImg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 160px;
+  height: 100%;
+}
+.edit .photo_wrap {
+  position: absolute;
+  left: 20px;
+  top: 206px;
+  right: 20px;
+  bottom: 170px;
+}
+.edit .photo_wrap #edit_wrap {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -410px;
+  height: 819px;
+  width: 710px;
+  background: #fff;
+}
+.edit .photo_wrap #edit_wrap canvas {
+  display: block;
+}
+.edit .photo_wrap #edit_wrap .img_wrap {
+  position: absolute;
+  overflow: hidden;
+}
+.edit .photo_wrap #filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.edit .photo_wrap #edit_wrap.type1 #filter {
+  background: url(../img/img1.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type1 .img_wrap {
+  left: 60px;
+  top: 170px;
+  width: 200px;
+  height: 300px;
+}
+.edit .photo_wrap #edit_wrap.type2 #filter {
+  background: url(../img/img2.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type2 .img_wrap {
+  left: 70px;
+  top: 46px;
+  width: 300px;
+  height: 300px;
+}
+.edit .photo_wrap #edit_wrap.type3 #filter {
+  background: url(../img/img3.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type3 .img_wrap {
+  left: 70px;
+  top: 46px;
+  width: 300px;
+  height: 300px;
+}
+.edit .photo_wrap #edit_wrap.type4 #filter {
+  background: url(../img/img4.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type4 .img_wrap {
+  left: 470px;
+  top: 140px;
+  width: 200px;
+  height: 200px;
+}
+.edit .photo_wrap #edit_wrap.type5 #filter {
+  background: url(../img/img5.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type5 .img_wrap {
+  left: 440px;
+  top: 60px;
+  width: 200px;
+  height: 200px;
+}
+.edit .photo_wrap #edit_wrap.type6 #filter {
+  background: url(../img/img6.png) no-repeat;
+}
+.edit .photo_wrap #edit_wrap.type6 .img_wrap {
+  left: 400px;
+  top: 160px;
+  width: 300px;
+  height: 300px;
+}
+.result {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #25343f;
+}
+.result .header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 202px;
+  background: url(../img/result_header.png) no-repeat;
+}
+.result .header h3 {
+  margin: 0;
+  padding: 0;
+  font: 34px/200px "Microsoft Yahei";
+  text-align: center;
+  text-shadow: 2px 2px 0 #ffa900;
+}
+.result .header .return {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 100px;
+}
+.result .photo_wrap {
+  position: absolute;
+  left: 0;
+  top: 202px;
+  width: 100%;
+}
+.result .photo_wrap img {
+  width: 100%;
+  height: auto;
+}
+.result .btn_save {
+  position: absolute;
+  left: 210px;
+  bottom: 20px;
+  width: 340px;
+  height: 104px;
+  background: url(../img/sprite.png) no-repeat -360px -1080px;
+}

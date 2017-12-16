@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>来和大佬合个影</title>
+    <meta name="project-path" content="daxue/sina" />
+    <meta name="keywords" content="新浪,新浪图片">
+    <meta name="description" content="来和大佬合个影">
+    <meta name="author" content="新浪">
+    <meta name="copyright" content="新浪版权所有">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="true">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <!-- build:css css/index.min.css -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- endbuild -->
+    <!-- build:js js/index.min.js -->
+    <!--  -->
+    <script src="../../../libs/fix-viewport.js"></script>
+    <script src="../../../libs/zepto_1.1.6.js"></script>
+    <script src="../../../libs/qrcode.js"></script>
+    <script src="../../../libs/pace.js"></script>
+    <script src="../../../libs/NewsAppClient.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/hilo-standalone.js"></script>
+    <script src="js/index.js"></script>
+    <!-- endbuild -->
+    <!-- statistics -->
+</head>
+<body>
+    <div id="common-loading">
+        <div id="common-loading-center"></div>
+
+    </div>
+    <div id="common-landscape">
+        <div id="common-landscape-center"></div>
+    </div>
+    <div id="common-pc">
+        <div id="common-pc-center"></div>
+    </div>
+    <div id="common-share">
+        <div style="display: none !important">
+            <div id="__newsapp_sharetext"></div>
+            <div id="__newsapp_sharephotourl"></div>
+            <div id="__newsapp_sharewxtitle"></div>
+            <div id="__newsapp_sharewxtext"></div>
+            <div id="__newsapp_sharewxthumburl"></div>
+            <div id="__newsapp_sharewxurl"></div>
+        </div>
+    </div>
+    <div class="common-container">
+        <!--TODO-->
+        <div class="loading">
+            <div class="title"></div>
+            <div class="logo"></div>
+            <div class="slogan"></div>
+            <div class="process"><i></i></div>
+            <div class="process_number">99%</div>
+        </div>
+        <div class="map">
+            <div class="k putin" name="2"><div class="avatar"></div><div class="name"></div></div>
+            <div class="k kate" name="5"><div class="avatar"></div><div class="name"></div></div>
+            <div class="k makron" name="4"><div class="avatar"></div><div class="name"></div></div>
+            <div class="k trudeau" name="3"><div class="avatar"></div><div class="name"></div></div>
+            <div class="k trump" name="1"><div class="avatar"></div><div class="name"></div></div>
+            <div class="k ivanka" name="6"><div class="avatar"></div><div class="name"></div></div>
+            <div class="europe"></div>
+            <div class="america"></div>
+        </div>
+        <div class="edit">
+            <div class="header"><div class="return"></div></div>
+            <div class="footer"><input type="file" id="inputfile"><div id="toImg"></div><!-- <div class="reset"></div> --></div>
+            <div class="photo_wrap">
+                <div id="edit_wrap" class="type1">
+                    <div class="img_wrap"><canvas id="canvas" width="200" height="300"></canvas></div>
+                    <div id="filter" class="img1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="result">
+            <div class="header"><div class="return"></div><h3></h3></div>
+            <div class="photo_wrap">
+                <img src="" id="result">
+            </div>
+            <div class="btn_save"></div>
+        </div>
+    </div>
+</body>
+</html>
