@@ -172,24 +172,24 @@
         }
         Gesture.prototype.toImg = function(){
             var _canvas = document.createElement("canvas");
-            _canvas.width = 710; _canvas.height = 819;
+            _canvas.width = 710; _canvas.height = 1015;
             var _avatar = new Image(); _avatar.src = window.stage.canvas.toDataURL();
             var self = this;
             var _ctx = _canvas.getContext('2d');
             console.log(_avatar.onload)
             var type = ny.type, o = ny.config.types[type];
-            $(".result h3").text(o.title)
+            // $(".result h3").text(o.title)
             _avatar.onload = function(){
                 // alert(1)
-                _ctx.drawImage(_avatar,o.c_l,o.c_t,o.c_w,o.c_h);
+                _ctx.drawImage(_avatar,o.c_l,o.c_t + 196,o.c_w,o.c_h);
                 console.log(type,o)
                 var _img = new Image(); _img.src = o.img;
                 _img.onload = function(){
                     // _ctx.drawImage(_img,0,0,710,819);
-                    _ctx.drawImage(_img,0,0,710,819)
+                    _ctx.drawImage(_img,0,0,710,1015)
                     var _qrcode = new Image(); _qrcode.src = "img/qrcode.png";
                     _qrcode.onload = function(){
-                        _ctx.drawImage(_qrcode,0,0,128,162,570,630,128,162)
+                        _ctx.drawImage(_qrcode,0,0,128,162,570,630+190,128,162)
                         $("#result").attr("src", _canvas.toDataURL())
                         // $(".result .photo_wrap").append(_canvas)
                     }
