@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=750, user-scalable=no" />
+	<title>cat</title>
+	<style>
+		.cat_item{float: left;margin: 10px;width: 650px;height: 600px;position: relative;background: #9E9E9E;}
+		#wrap_body{
+			position: absolute;left: 75px;top: 200px;
+			width: 450px;height: 350px;
+		}
+		#wrap_tail{
+			position: absolute;left: 300px;top: 120px;
+			width: 320px;height: 350px;
+		}
+		#wrap_head,#wrap_mouth,#wrap_ears,#wrap_mustache,#wrap_valla,#wrap_other{
+			position: absolute;left: 125px;top: 15px;
+			width: 350px;height: 310px;
+		}
+		#wrap_eye{
+			position: absolute;left: 195px;top: 160px;
+			width: 210px;height: 85px;
+		}
+		.btns{
+			width: 650px;	
+			text-align: center;
+		}
+		.btn{
+			display: inline-block;
+			padding: 0 1em;margin: 1em 1em 0 0;	
+			background: #4CAF50;border: 2px solid #38883B;border-radius: 0.5em;
+			font: 1em/2 "";color: #fff;cursor: pointer;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.btn:active{background: #38883B;}
+	</style>
+	<script src="vue.2.3.4.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="btns">
+			<div class="btn" @click="randomCat">随机生成</div>
+			<div class="btn" @click="getPrevCat">上一只</div>
+		</div>
+		<div class="cat_item" v-bind:style="{backgroundColor: currentCat.bgcolor}"> <!--  -->
+			<div id="wrap_tail" v-html="currentCat.tail"></div>
+			<div id="wrap_body" v-html="currentCat.body"></div>
+			<div id="wrap_ears" v-html="currentCat.ears"></div>
+			<div id="wrap_head" v-html="currentCat.head"></div>
+			<div id="wrap_mouth" v-html="currentCat.mouth"></div>
+			<div id="wrap_mustache" v-html="currentCat.mustache"></div>
+			<div id="wrap_valla" v-html="currentCat.valla"></div>
+			<div id="wrap_eye" v-html="currentCat.eyes"></div>
+			<div id="wrap_other" v-html="currentCat.others"></div>
+		</div>
+	</div>
+	<script>
+		var gene = {
+			bodys : [
+				{
+					id: "BAA",
+					name: "身体1（普通身体不带花纹）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="350"><defs><path id="a" d="M12.92 25.73L166.59 0l153.68 25.73A15.47 15.47 0 0 1 333.2 41c0 7.45-5.73 13.64-13.16 14.22-39.4 3.04-90.55 4.56-153.44 4.56-62.88 0-114.03-1.52-153.43-4.56A14.25 14.25 0 0 1 0 40.99c0-7.56 5.46-14 12.92-15.26z"/><filter id="b" width="119.8%" height="116.2%" x="-9.9%" y="-8.1%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><filter id="d" width="117%" height="328.6%" x="-8.5%" y="-114.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="e" d="M56.54 15.95C85.61 4.83 116.76-.4 150 .27c41.72.84 83.4 6.15 95.88 15.68 2.44 1.86 5.08 3.48 6.2 6 1.1 2.53 2.32 6.54 4.78 11.2 9.4 17.76 29.52 48.85 36.71 89.95 9.07 51.86 11.45 86.04-13.04 117.88-24.48 31.83-79.94 35.99-120.12 35.99-40.18 0-103.27 0-134.15-26.02C-4.63 224.93-4.7 171.48 8.02 123.1 19.42 79.77 27.4 65.2 44.1 33.15c1-1.9 2.89-8.17 4.52-11.2.81-1.5 3.45-3.5 7.92-6z"/><filter id="f" width="118.6%" height="130.5%" x="-9.3%" y="-15.2%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="h" d="M54.48 88.47a18.92 18.92 0 0 1 4 11.65v1.52a19 19 0 0 1-19 19H19a19 19 0 0 1-19-19v-1.52a19 19 0 0 1 .24-3.04A9.03 9.03 0 0 1 0 95V19.5A19.5 19.5 0 0 1 19.5 0h15.48a19.5 19.5 0 0 1 19.5 19.5v68.97z"/><filter id="j" width="185.7%" height="228.6%" x="-42.9%" y="-64.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="k" d="M54.48 88.47a18.92 18.92 0 0 1 4 11.65v1.52a19 19 0 0 1-19 19H19a19 19 0 0 1-19-19v-1.52a19 19 0 0 1 .24-3.04A9.03 9.03 0 0 1 0 95V19.5A19.5 19.5 0 0 1 19.5 0h15.48a19.5 19.5 0 0 1 19.5 19.5v68.97z"/><filter id="m" width="185.7%" height="228.6%" x="-42.9%" y="-64.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(61 20)"><ellipse cx="168" cy="273" fill="#000" opacity=".1" rx="168" ry="42"/><g transform="translate(0 209.28)"><mask id="c" fill="#fff"><use xlink:href="#a"/></mask><use fill="#FFF" xlink:href="#a"/><path fill="#4B323C" d="M60.37-206.2c-2.28-11.52-2.28-23.47 0-35.84 2.29-12.37 10.22-27.3 23.8-44.79a79.05 79.05 0 0 1 37.98-22.16 177.82 177.82 0 0 1 44.02-5.6c13.9.33 27.25 2.2 40.07 5.6 12.83 3.4 25.1 9.18 36.83 17.33 4.22-.16 9.63 5.32 16.23 16.44 6.6 11.12 10.57 26.92 11.9 47.42-.79 14.9-2.65 25.18-5.59 30.86-4.4 8.52 27.3 35.17 40.12 98.34 12.82 63.17 15.95 102.66-8.24 124.85-24.2 22.2-84.49 29.43-124.56 29.43-40.07 0-103 0-133.79-26.1C8.35 3.5 8.24-50.1 20.96-98.6c8.49-32.33 21.62-68.2 39.41-107.6z" filter="url(#b)" mask="url(#c)" opacity=".03"/><path fill="#452E37" d="M-8.63 41c36.94 8.25 96.18 11.9 177.74 10.93 81.55-.97 140.05-2.77 175.5-5.4v20.71H-8.64V41z" filter="url(#d)" mask="url(#c)" opacity=".03"/></g><g transform="translate(13 .05)"><mask id="g" fill="#fff"><use xlink:href="#e"/></mask><use fill="#FFFEFD" xlink:href="#e"/><path fill="#452E37" d="M-9.35 129.53c44.16 76.7 98.44 114.48 162.85 113.34 64.4-1.14 117.72-45.3 159.94-132.46v160l-81.9 36.98H81.18l-90.53-44.05v-133.8z" filter="url(#f)" mask="url(#g)" opacity=".05"/><path stroke="#000" stroke-linecap="round" stroke-opacity=".05" d="M103.45 110.86a.5.5 0 1 1 1 0v5.93a.5.5 0 1 1-1 0v-5.93zm-30.9 17a.5.5 0 1 1 1 0v5.31a.5.5 0 1 1-1 0v-5.3zm72.61 44.93a.5.5 0 1 1 1 0v6.5a.5.5 0 1 1-1 0v-6.5zm-107.12-1.1a.5.5 0 0 1 1 0v4.8a.5.5 0 1 1-1 0v-4.8zm4.15 54.24a.5.5 0 0 1 1 0v5.93a.5.5 0 0 1-1 0v-5.93zm31.43-45.39a.5.5 0 1 1 1 0v5.26a.5.5 0 0 1-1 0v-5.26zM16.4 142.57a.5.5 0 0 1 1 0v5.66a.5.5 0 0 1-1 0v-5.66zm23.97-72.6a.5.5 0 1 1 1 0v6.8a.5.5 0 0 1-1 0v-6.8zm152.18 40.9a.5.5 0 1 1 1 0v5.92a.5.5 0 0 1-1 0v-5.93zm30.9 17a.5.5 0 1 1 1 0v5.3a.5.5 0 1 1-1 0v-5.3zm34.5 43.82a.5.5 0 0 1 1 0v4.8a.5.5 0 1 1-1 0v-4.8zm-4.15 54.24a.5.5 0 1 1 1 0v5.93a.5.5 0 0 1-1 0v-5.93zm-31.43-45.39a.5.5 0 1 1 1 0v5.26a.5.5 0 0 1-1 0v-5.26zm57.22-37.97a.5.5 0 0 1 1 0v5.66a.5.5 0 1 1-1 0v-5.66zm-23.97-72.6a.5.5 0 1 1 1 0v6.8a.5.5 0 0 1-1 0v-6.8z" mask="url(#g)"/></g><g transform="translate(89 174)"><mask id="i" fill="#fff"><use xlink:href="#h"/></mask><use fill="#FFF" xlink:href="#h"/><path stroke="#000" stroke-opacity=".05" stroke-width="2" d="M19.5 82.28c15.62-1.36 25.41-.8 29.16 1.59 3.82 2.43 6.38 5.38 7.68 8.87L58 91.7c-4.95-5.18-8.84-8.37-11.75-9.6-2.93-1.23-11.77-1.81-26.84-1.81l.1 2z" mask="url(#i)"/><path fill="#452E37" d="M-4.31 84.09C3.8 99.1 14.4 106.75 27.52 107.02c13.1.27 25.82-5.2 38.18-16.38v38.74l-68.39 1.35L-4.3 84.1z" filter="url(#j)" mask="url(#i)" opacity=".05"/></g><g transform="matrix(-1 0 0 1 237 174)"><mask id="l" fill="#fff"><use xlink:href="#k"/></mask><use fill="#FFF" xlink:href="#k"/><path stroke="#000" stroke-opacity=".05" stroke-width="2" d="M19.5 82.28c15.62-1.36 25.41-.8 29.16 1.59 3.82 2.43 6.38 5.38 7.68 8.87L58 91.7c-4.95-5.18-8.84-8.37-11.75-9.6-2.93-1.23-11.77-1.81-26.84-1.81l.1 2z" mask="url(#l)"/><path fill="#452E37" d="M-4.31 84.09C3.8 99.1 14.4 106.75 27.52 107.02c13.1.27 25.82-5.2 38.18-16.38v38.74l-68.39 1.35L-4.3 84.1z" filter="url(#m)" mask="url(#l)" opacity=".05"/></g></g></svg>'
+				},
+				{
+					id: "BAB",
+					name: "身体2（鸡猫体不带花纹）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="350"><defs><path id="a" d="M50.54 15.95C79.61 4.83 110.76-.4 144 .27c41.72.84 83.4 6.15 95.88 15.68 2.44 1.86 5.08 3.48 6.2 6 1.1 2.53 2.32 6.54 4.78 11.2 9.4 17.76 33.62 52.06 36.71 89.95 3.56 43.6-2.44 55.1-26.93 86.94-24.49 31.84-72.05 42.59-112.24 42.59-40.18 0-109.51-16.52-126.36-37.38-16.85-20.87-25.1-43.96-20.01-92.15C6.68 78.86 21.4 65.2 38.1 33.15c1-1.9 2.89-8.17 4.52-11.2.81-1.5 3.45-3.5 7.92-6z"/><filter id="b" width="118.6%" height="161.9%" x="-9.3%" y="-30.9%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="d" d="M27.85 126.5c14.35 0 55.25-26.68 55.25-49.15 0-22.46-10.48-35.85-24.83-35.85-14.35 0-31.58 14.73-37.24 35.85-5.66 21.13-7.53 49.15 6.82 49.15z"/><path id="e" d="M273.85 126.5c14.35 0 55.25-26.68 55.25-49.15 0-22.46-10.48-35.85-24.83-35.85-14.35 0-31.58 14.73-37.24 35.85-5.66 21.13-7.53 49.15 6.82 49.15z"/><path id="f" d="M86.5 95.75c25.68 0 46.5-32.9 46.5-58.8C133 11.06 112.18 2 86.5 2S.98-5.92.98 19.97 60.82 95.75 86.5 95.75z"/><filter id="g" width="152.8%" height="176.7%" x="-26.4%" y="-38.4%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="i" d="M46.5 109.75c25.68 0 89.6-73.56 89.6-99.45S72.19 16 46.5 16C20.82 16 0 25.06 0 50.95c0 25.9 20.82 58.8 46.5 58.8z"/><filter id="j" width="152.8%" height="176.7%" x="-26.4%" y="-38.4%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(49 -144)"><ellipse cx="180" cy="437" fill="#000" opacity=".1" rx="168" ry="42"/><g transform="translate(31 164.05)"><mask id="c" fill="#fff"><use xlink:href="#a"/></mask><use fill="#FFE69B" xlink:href="#a"/><path fill="#452E37" d="M-15.35 176.42c44.16 37.77 98.44 56.37 162.85 55.81 64.4-.56 117.72-22.3 159.94-65.23v78.8l-81.9 18.2H75.18l-90.53-21.7v-65.88z" filter="url(#b)" mask="url(#c)" opacity=".15"/><path stroke="#F2DA93" stroke-linecap="round" d="M97.45 110.86a.5.5 0 1 1 1 0v5.93a.5.5 0 0 1-1 0v-5.93zm-30.9 17a.5.5 0 1 1 1 0v5.31a.5.5 0 1 1-1 0v-5.3zm72.61 44.93a.5.5 0 1 1 1 0v6.5a.5.5 0 1 1-1 0v-6.5zm-107.12-1.1a.5.5 0 0 1 1 0v4.8a.5.5 0 1 1-1 0v-4.8zm4.15 54.24a.5.5 0 0 1 1 0v5.93a.5.5 0 0 1-1 0v-5.93zm31.43-45.39a.5.5 0 1 1 1 0v5.26a.5.5 0 0 1-1 0v-5.26zM10.4 142.57a.5.5 0 0 1 1 0v5.66a.5.5 0 0 1-1 0v-5.66zm23.97-72.6a.5.5 0 1 1 1 0v6.8a.5.5 0 0 1-1 0v-6.8zm152.18 40.9a.5.5 0 1 1 1 0v5.92a.5.5 0 0 1-1 0v-5.93zm30.9 17a.5.5 0 1 1 1 0v5.3a.5.5 0 1 1-1 0v-5.3zm34.5 43.82a.5.5 0 0 1 1 0v4.8a.5.5 0 1 1-1 0v-4.8zm-4.15 54.24a.5.5 0 1 1 1 0v5.93a.5.5 0 0 1-1 0v-5.93zm-31.43-45.39a.5.5 0 1 1 1 0v5.26a.5.5 0 0 1-1 0v-5.26zm57.22-37.97a.5.5 0 0 1 1 0v5.66a.5.5 0 1 1-1 0v-5.66zm-23.97-72.6a.5.5 0 1 1 1 0v6.8a.5.5 0 0 1-1 0v-6.8z" mask="url(#c)"/></g><g transform="rotate(30 -255.66 167.88)"><use fill="#FFE69B" stroke="#FFE69B" xlink:href="#d"/><use stroke="#000" stroke-opacity=".05" xlink:href="#d"/></g><g transform="scale(-1 1) rotate(30 -306.61 -940.36)"><use fill="#FFE69B" stroke="#FFE69B" xlink:href="#e"/><use stroke="#000" stroke-opacity=".05" xlink:href="#e"/></g><g transform="translate(40 335)"><mask id="h" fill="#fff"><use xlink:href="#f"/></mask><use fill="#FFE69B" xlink:href="#f"/><path fill="#452E37" d="M36.74 29.35c13.11 26.1 27.91 39.15 44.4 39.15 16.5 0 39.57-9.07 69.22-27.21l-20.63 66.28-84.2-3.81-8.79-74.4z" filter="url(#g)" mask="url(#h)" opacity=".1"/></g><path fill="#000" d="M126.8 433.84c1.56.16 3.16.39 4.8.68 5.7 1.32 9.74 3.29 12.14 5.89 3.58 3.9 4.54 6.13 4.28 8.45-.27 2.32-3.01 2.3-4.28 1.96-1.28-.35-1.66-2.16-3.77-6.23-2.1-4.07-5.46-6.5-10.07-6.5s-2.36 2.6-2.85 7.01c-.5 4.42.45 2.6 0 5.3-.45 2.72-3.43 2.6-5.31 1.45-1.88-1.16-1.06-3.6-1.06-6.75 0-3.14 1.41-5.06-1.98-5.83-3.4-.77-6.5-.03-10.62 2.44-4.1 2.46-2.67 6-5.83 5.32-2.1-.46-2.81-1.84-2.12-4.16.47-2.91 3.69-5.41 9.65-7.5a35.8 35.8 0 0 1 12.38-1.8 2.4 2.4 0 0 1-.03-.4v-4.84a2.38 2.38 0 1 1 4.77 0v4.85c0 .23-.04.45-.1.66z"/><g transform="translate(179 321)"><mask id="k" fill="#fff"><use xlink:href="#i"/></mask><use fill="#FFE69B" xlink:href="#i"/><path fill="#452E37" d="M-15 43c13.11 26.1 27.91 39.15 44.4 39.15s39.56-9.07 69.22-27.22l-20.64 66.28-84.19-3.8L-15 43z" filter="url(#j)" mask="url(#k)" opacity=".1"/></g><path fill="#000" d="M225.88 433.48c1.53.17 3.1.42 4.73.74 5.7 1.47 9.73 3.65 12.13 6.53 3.58 4.32 4.54 6.8 4.28 9.37-.27 2.58-3.01 2.55-4.28 2.17-1.28-.38-1.66-2.38-3.77-6.9-2.1-4.51-5.46-7.22-10.07-7.22s-2.36 2.21-2.85 7.11c-.5 4.9.45 2.88 0 5.88-.45 3.01-3.43 2.89-5.31 1.6-1.88-1.28-1.06-4-1.06-7.48 0-3.48 1.41-4.93-1.98-5.8-3.4-.85-6.5-.02-10.62 2.71-4.1 2.74-2.67 6.66-5.83 5.9-2.1-.5-2.81-2.04-2.12-4.6.47-3.24 3.69-6.01 9.65-8.32a32.56 32.56 0 0 1 12.35-2v-4.84a2.38 2.38 0 0 1 4.77 0v4.85c0 .1 0 .2-.02.3z"/></g></svg>'
+				},
+				{
+					id: "BAC",
+					name: "身体3（钢铁侠）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="450" height="350"><defs><path id="a" d="M3.34 27.34L166.59 0l163.26 27.34a4 4 0 0 1 3.34 3.94v19.16a4 4 0 0 1-3.65 3.98c-40.56 3.57-94.87 5.35-162.95 5.35-68.07 0-122.38-1.78-162.94-5.35A4 4 0 0 1 0 50.44V31.28a4 4 0 0 1 3.34-3.94z"/><filter id="b" width="119.8%" height="116.2%" x="-9.9%" y="-8.1%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><filter id="d" width="117%" height="328.6%" x="-8.5%" y="-114.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="e" d="M56.54 15.95C85.61 4.83 116.76-.4 150 .27c41.72.84 83.4 6.15 95.88 15.68 2.44 1.86 5.08 3.48 6.2 6 1.1 2.53 2.32 6.54 4.78 11.2 9.4 17.76 29.52 48.85 36.71 89.95 9.07 51.86 11.45 86.04-13.04 117.88-24.48 31.83-79.94 35.99-120.12 35.99-40.18 0-103.27 0-134.15-26.02C-4.63 224.93-4.7 171.48 8.02 123.1 19.42 79.77 27.4 65.2 44.1 33.15c1-1.9 2.89-8.17 4.52-11.2.81-1.5 3.45-3.5 7.92-6z"/><filter id="f" width="118.6%" height="130.5%" x="-9.3%" y="-15.2%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><circle id="h" cx="152.5" cy="139.5" r="26.5"/><path id="i" d="M54.48 88.47a18.92 18.92 0 0 1 4 11.65v1.52a19 19 0 0 1-19 19H19a19 19 0 0 1-19-19v-1.52a19 19 0 0 1 .24-3.04A9.03 9.03 0 0 1 0 95V19.5A19.5 19.5 0 0 1 19.5 0h15.48a19.5 19.5 0 0 1 19.5 19.5v68.97z"/><filter id="k" width="185.7%" height="228.6%" x="-42.9%" y="-64.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter><path id="l" d="M54.48 88.47a18.92 18.92 0 0 1 4 11.65v1.52a19 19 0 0 1-19 19H19a19 19 0 0 1-19-19v-1.52a19 19 0 0 1 .24-3.04A9.03 9.03 0 0 1 0 95V19.5A19.5 19.5 0 0 1 19.5 0h15.48a19.5 19.5 0 0 1 19.5 19.5v68.97z"/><filter id="n" width="185.7%" height="228.6%" x="-42.9%" y="-64.3%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="10"/></filter></defs><g fill="none" fill-rule="evenodd" transform="translate(61 20)"><ellipse cx="168" cy="273" fill="#000" opacity=".1" rx="168" ry="42"/><g transform="translate(0 209.28)"><mask id="c" fill="#fff"><use xlink:href="#a"/></mask><use fill="#DF3333" xlink:href="#a"/><path fill="#4B323C" d="M60.37-206.2c-2.28-11.52-2.28-23.47 0-35.84 2.29-12.37 10.22-27.3 23.8-44.79a79.05 79.05 0 0 1 37.98-22.16 177.82 177.82 0 0 1 44.02-5.6c13.9.33 27.25 2.2 40.07 5.6 12.83 3.4 25.1 9.18 36.83 17.33 4.22-.16 9.63 5.32 16.23 16.44 6.6 11.12 10.57 26.92 11.9 47.42-.79 14.9-2.65 25.18-5.59 30.86-4.4 8.52 27.3 35.17 40.12 98.34 12.82 63.17 15.95 102.66-8.24 124.85-24.2 22.2-84.49 29.43-124.56 29.43-40.07 0-103 0-133.79-26.1C8.35 3.5 8.24-50.1 20.96-98.6c8.49-32.33 21.62-68.2 39.41-107.6z" filter="url(#b)" mask="url(#c)" opacity=".03"/><path fill="#452E37" d="M-8.63 41c36.94 8.25 96.18 11.9 177.74 10.93 81.55-.97 140.05-2.77 175.5-5.4v20.71H-8.64V41z" filter="url(#d)" mask="url(#c)" opacity=".03"/></g><g transform="translate(13 .05)"><mask id="g" fill="#fff"><use xlink:href="#e"/></mask><use fill="#FF314D" xlink:href="#e"/><path fill="#452E37" d="M-9.35 129.53c44.16 76.7 98.44 114.48 162.85 113.34 64.4-1.14 117.72-45.3 159.94-132.46v160l-81.9 36.98H81.18l-90.53-44.05v-133.8z" filter="url(#f)" mask="url(#g)" opacity=".05"/><g mask="url(#g)"><use fill="#D9EDFF" xlink:href="#h"/><circle cx="152.5" cy="139.5" r="25" stroke="#49A5FF" stroke-width="3"/></g><path stroke="#A13C3C" stroke-width="2" d="M29.14 63.05l41.04 43.28-20.52 52.34-26.36 8.44-17.06 60.04-37.98-53.51L9.22 66.4z" mask="url(#g)"/><path stroke="#A13C3C" stroke-width="2" d="M287.88 63l41.04 43.28-20.52 52.34-26.35 8.43-17.07 60.05L227 173.59l40.96-107.24z" mask="url(#g)" transform="matrix(-1 0 0 1 555.92 0)"/></g><g transform="translate(89 174)"><mask id="j" fill="#fff"><use xlink:href="#i"/></mask><use fill="#FF314D" xlink:href="#i"/><path stroke="#A13C3C" stroke-width="2" d="M53.7 89.08l-.22-.27V19.5A18.5 18.5 0 0 0 34.98 1H19.5A18.5 18.5 0 0 0 1 19.5V95c0 .63.07 1.25.21 1.85l.05.19-.03.2c-.15.94-.23 1.9-.23 2.88v1.52a18 18 0 0 0 18 18h20.47a18 18 0 0 0 18-18v-1.52c0-4.06-1.34-7.9-3.78-11.04z"/><path d="M19.41 81.29c15.85-1.39 25.78-.81 29.78 1.73 4 2.55 6.7 5.67 8.09 9.37-4.86-5.09-8.67-8.2-11.41-9.37-2.75-1.16-11.57-1.73-26.46-1.73z" mask="url(#j)"/><path fill="#452E37" d="M-4.31 84.09C3.8 99.1 14.4 106.75 27.52 107.02c13.1.27 25.82-5.2 38.18-16.38v38.74l-68.39 1.35L-4.3 84.1z" filter="url(#k)" mask="url(#j)" opacity=".05"/><path stroke="#A13C3C" stroke-width="2" d="M1.26 39.27v37.67l27.53-6.67 25.06 8.59V40.2l-28.23-7.98z" mask="url(#j)"/></g><g transform="matrix(-1 0 0 1 237 174)"><mask id="m" fill="#fff"><use xlink:href="#l"/></mask><use fill="#FF314D" xlink:href="#l"/><path stroke="#A13C3C" stroke-width="2" d="M53.7 89.08l-.22-.27V19.5A18.5 18.5 0 0 0 34.98 1H19.5A18.5 18.5 0 0 0 1 19.5V95c0 .63.07 1.25.21 1.85l.05.19-.03.2c-.15.94-.23 1.9-.23 2.88v1.52a18 18 0 0 0 18 18h20.47a18 18 0 0 0 18-18v-1.52c0-4.06-1.34-7.9-3.78-11.04z"/><path stroke="#A13C3C" stroke-width="2" d="M1 40.05v37.67l27.52-6.67 25.06 8.6V40.98L25.36 33z" mask="url(#m)"/><path d="M19.41 81.29c15.85-1.39 25.78-.81 29.78 1.73 4 2.55 6.7 5.67 8.09 9.37-4.86-5.09-8.67-8.2-11.41-9.37-2.75-1.16-11.57-1.73-26.46-1.73z" mask="url(#m)"/><path fill="#452E37" d="M-4.31 84.09C3.8 99.1 14.4 106.75 27.52 107.02c13.1.27 25.82-5.2 38.18-16.38v38.74l-68.39 1.35L-4.3 84.1z" filter="url(#n)" mask="url(#m)" opacity=".05"/></g></g></svg>'
+				}
+			],
+			tails : [
+				{
+					id: "TAA",
+					name: "尾巴1（普通尾巴带花纹1）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="350"><g fill="none" fill-rule="evenodd"><path fill="#FFF" d="M.74 291.74c53.99-2.72 101.15-11.38 141.46-26 60.48-21.93 63.14-97.35 62.92-133.59-.22-36.24 36.95-40.78 48.7-20.39s18.64 98.44 0 133.2c-18.63 34.75-34.85 56.69-85.16 71.34-33.53 9.76-89.5 14.65-167.92 14.65v-39.2z"/><path fill="#49A5FF" d="M204.52 157.99c.35.03 2.82.48 7.4 1.35 4.6.87 13.75 4.49 27.45 10.85-3.68-.17-10.12-.17-19.33 0-9.2.17-14.65-.56-16.33-2.2l.8-10zm-2.35 21.62c1.9-.15 5.15.2 9.73 1.08 4.57.86 13.73 2.32 27.47 4.37-3.74 4.14-10.2 6.3-19.38 6.47-9.19.17-15.67-.83-19.45-3l1.63-8.92zm-3.33 16.14c4.55.92 8.29 3.29 11.22 7.11 2.93 3.83 5.02 8.55 6.25 14.15a63.23 63.23 0 0 0-10.16-7.84 36.53 36.53 0 0 0-9.87-4l2.56-9.42zm-5.47 17.39c3.96 2.79 6.75 5.04 8.37 6.75 1.62 1.71 3.37 4.25 5.26 7.62l-18.01-4.39 4.38-9.98z"/></g></svg>'
+				},
+				{
+					id: "TAB",
+					name: "尾巴2（卷曲尾巴无花纹）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="350"><g fill="none" fill-rule="evenodd" transform="translate(-178 -65)"><ellipse cx="180" cy="437" fill="#000" opacity=".1" rx="168" ry="42"/><path fill="#FFE69B" d="M181.33 344.74c82.71 14.62 144.23 14.62 184.55 0 35.17-12.75 74.44-71.97 59.4-108.26-7.88-19.01-32.27-27.18-46.16-22.74-13.9 4.44-21.86 27.45-10.36 40.8 2.46 2.85 9 3.95 10.36 0 2.37-6.95 3.36-22.2 17.16-22.2 21.12 0 27.48 17.19 19.41 30.31-3.63 5.91-21.91 33.17-49.8 24.66-27.9-8.52-39.1-25.06-35.73-61.03 3.37-35.97 45.58-59.2 87.24-48.9 41.65 10.31 48.06 24.66 55.3 54.96 7.23 30.29-6.27 74.44-20.11 88.83-27.31 28.38-41.56 44.4-86.7 59.58-30.1 10.13-91.63 11.2-184.56 3.2v-39.2z"/></g></svg>'
+				},
+				{
+					id: "TAB",
+					name: "尾巴3（钢铁侠）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="350"><g fill="none" fill-rule="evenodd" transform="translate(8 121)"><path fill="#DE3333" d="M21.2 163.19c67.29-2.8 111.34-10.34 132.16-22.6 12.7-7.48 21.73-13.62 27.12-18.44a11 11 0 0 1 14.53-.13l22.13 19.13a11 11 0 0 1 .9 15.77 133.06 133.06 0 0 1-39.81 29.58c-18.78 9.2-71.12 10.68-157.02 4.43v-27.74z"/><circle cx="179" cy="155" r="6.5" stroke="#D9EDFF" stroke-width="3"/><path stroke="#A13C3C" stroke-width="2" d="M193.56 121.73l-5.94 13.76 14.89 14.13 16.27-6.09"/></g></svg>'
+				}
+			],
+			heads : [
+				{
+					id: "HAA",
+					name: "脸型1（普通脸带花纹1）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="310"><defs><path id="aa" d="M103.5 197.04c57.16 0 103.5-36.38 103.5-93.54 0-47.54-9.8-65.8-31.82-84.79C157.05 3.1 129.3 0 103.5 0 77.6 0 48.01 2.99 29.86 18.71 7.96 37.7 0 63.9 0 103.5c0 57.16 46.34 93.54 103.5 93.54z"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(69 109)"><use fill="#FFF" xlink:href="#aa"/><use fill="#000" fill-opacity=".02" xlink:href="#aa"/></g><path fill="#000" d="M115.55 241.95c23.9 9.89 43.54 14.83 58.94 14.83 15.4 0 35.4-4.94 59.99-14.83-30.08 14.75-50.08 22.12-60 22.12-9.91 0-29.56-7.37-58.93-22.12z" opacity=".05"/><path fill="#49A5FF" d="M70.9 184c.97 2.4 3.19 4.48 6.66 6.25 3.47 1.78 8.5 4.42 15.05 7.93-7.95.97-13.65.97-17.1 0-3.44-.96-5.28-2.14-5.51-3.53 0-1.6.1-3.24.28-4.94l.63-5.71zm-1.12 16.46c2.33 2.82 5.74 4.94 10.23 6.36s13.58 4.2 27.28 8.32c-15.46.62-24.9.44-28.36-.52a40.16 40.16 0 0 1-9.84-4.24v-5.1c0-1.46.23-3.07.69-4.82zM274.8 184l.63 5.7c.18 1.7.27 3.35.27 4.95-.23 1.4-2.06 2.57-5.51 3.53-3.45.97-9.15.97-17.1 0a961 961 0 0 1 15.05-7.93c3.48-1.77 5.7-3.86 6.66-6.25zm.8 16c.46 1.76.7 3.36.7 4.82v5.1a40.16 40.16 0 0 1-9.85 4.24c-3.45.96-12.9 1.14-28.36.53 13.7-4.13 22.8-6.9 27.29-8.33 4.49-1.42 7.9-3.54 10.22-6.36zM183 109c.29 5.74.54 9.22.76 10.46 1.17 18.82-1.54 35.02-8.13 48.61-6.66-12.64-9.47-28.46-8.41-47.45V109H183zm-26 .47c.34 2.67.6 4.28.78 4.83.96 8.4-1.27 15.63-6.68 21.7-5.48-5.64-7.8-12.7-6.92-21.18 0-1.92.18-3.46.55-4.62l12.27-.73zm36.05.53l12.27.78c.37 1.22.55 2.84.55 4.87.87 8.94-1.44 16.4-6.92 22.35-5.42-6.4-7.64-14.03-6.68-22.9a44 44 0 0 0 .78-5.1z"/></g></svg>'
+				},
+				{
+					id: "HAB",
+					name: "脸型2（普通尖脸无花纹）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><g fill="none" fill-rule="evenodd"><path fill="#FFE69B" d="M172.5 306.04c57.16 0 103.5-36.38 103.5-93.54 0-47.54-9.8-65.8-31.82-84.79C226.05 112.1 198.3 109 172.5 109c-25.9 0-55.49 2.99-73.64 18.71C76.96 146.7 69 172.9 69 212.5c0 57.16 46.34 93.54 103.5 93.54z"/><path fill="#FFF" d="M164.18 203.2a10.22 10.22 0 0 1 19.28-.18c13.03.8 24.2 3.71 30.38 10.6 3.48 3.87 5.09 11.44 5.09 16.18 0 14.92-26.93 27.02-43.87 27.02-16.94 0-43.88-12.1-43.88-27.02 0-4.8.68-12.29 4.23-16.19 5.83-6.4 16.57-9.4 28.77-10.41z" opacity=".8"/><path fill="#000" d="M115.55 241.95c23.9 9.89 43.54 14.83 58.94 14.83 15.4 0 35.4-4.94 59.99-14.83-30.08 14.75-50.08 22.12-60 22.12-9.91 0-29.56-7.37-58.93-22.12z" opacity=".05"/></g></svg>'
+				},
+				{
+					id: "HAC",
+					name: "脸型3（钢铁侠）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><g fill="none" fill-rule="evenodd"><path fill="#FF314D" d="M172.5 306.04c57.16 0 103.5-36.38 103.5-93.54 0-47.54-9.8-65.8-31.82-84.79C226.05 112.1 198.3 109 172.5 109c-25.9 0-55.49 2.99-73.64 18.71C76.96 146.7 69 172.9 69 212.5c0 57.16 46.34 93.54 103.5 93.54z"/><path stroke="#A13C3C" d="M73.14 229.7c8.1 45.9 49.47 74.3 99.3 74.3 49.9 0 91.32-28.48 99.34-74.48"/><path fill="#000" d="M115.55 241.95c23.9 9.89 43.54 14.83 58.94 14.83 15.4 0 35.4-4.94 59.99-14.83-30.08 14.75-50.08 22.12-60 22.12-9.91 0-29.56-7.37-58.93-22.12z" opacity=".05"/><path fill="#FFDA6A" stroke="#A13C3C" stroke-width="2" d="M113.85 125.24l-33.51 99.25 58.39 55.76h68.43l61.42-55.76-38.08-99.25h-40.97l-5.41 15.17h-23.27l-6.34-15.17z"/></g></svg>'
+				},
+			],
+			mouth : [
+				{
+					id: "MAA",
+					name: "鼻子和嘴1（普通微笑）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><g fill="none" fill-rule="evenodd"><path stroke="#000" stroke-linecap="round" stroke-width="3" d="M174.38 215.33v8.03m-20.25 1.12c.25 3.7 2.8 5.55 7.66 5.55s9.13-2.22 12.8-6.67c5.54 4.13 10.24 6.2 14.11 6.2 3.88 0 5.85-1.7 5.93-5.08"/><path fill="#FF4990" d="M167.53 211.1l6.43 4.55a1 1 0 0 0 1.16 0l6.4-4.56a1 1 0 0 0-.58-1.81h-12.83a1 1 0 0 0-.58 1.82z"/></g></svg>'
+				},
+				{
+					id: "MAB",
+					name: "鼻子和嘴2（平淡嘴形）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><g fill="none" fill-rule="evenodd"><path stroke="#000" stroke-linecap="round" stroke-width="3" d="M174.38 215.33V231m-7.1.29h25"/><path fill="#FF4990" d="M167.53 211.1l6.43 4.55a1 1 0 0 0 1.16 0l6.4-4.56a1 1 0 0 0-.58-1.81h-12.83a1 1 0 0 0-.58 1.82z"/></g></svg>'
+				}
+			],
+			ears : [
+				{
+					id: "EAA",
+					name: "耳朵1（折耳）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="310"><defs><path id="ea" d="M9.85 20.05c-2.14 1.03-3.96 1.6-5.39 1.1-4.17-1.5-7.52-10.47.96-15.7C13.89.2 21.19-.83 32.02 1.5c7.23 1.56 17.23 8.16 30 19.8-1.76-.54-3.45-1.05-5.1-1.53l.4.28L16.8 38.87c-2.73-3.76-4.85-9.14-6.34-16.15a134 134 0 0 0-.61-2.67z"/><path id="ec" d="M9.85 20.05c-2.14 1.03-3.96 1.6-5.39 1.1-4.17-1.5-7.52-10.47.96-15.7C13.89.2 21.19-.83 32.02 1.5c7.23 1.56 17.23 8.16 30 19.8-1.76-.54-3.45-1.05-5.1-1.53l.4.28L16.8 38.87c-2.73-3.76-4.85-9.14-6.34-16.15a134 134 0 0 0-.61-2.67z"/></defs><g fill="none" fill-rule="evenodd"><g transform="scale(-1 1) rotate(-15 284.51 1095.13)"><mask id="eb" fill="#fff"><use xlink:href="#ea"/></mask><use fill="#FFF" xlink:href="#ea"/><path fill="#000" fill-opacity=".05" d="M5.42 5.44c-8.48 5.24-5.13 14.2-.96 15.7s11.59-6.26 20.57-7.38c5.98-.74 18.31 1.78 36.99 7.55-12.77-11.65-22.77-18.25-30-19.8C21.2-.83 13.9.2 5.42 5.43z" mask="url(#eb)"/></g><g transform="rotate(-15 455.18 -210.74)"><mask id="ed" fill="#fff"><use xlink:href="#ec"/></mask><use fill="#FFF" xlink:href="#ec"/><path fill="#000" fill-opacity=".05" d="M5.42 5.44c-8.48 5.24-5.13 14.2-.96 15.7s11.59-6.26 20.57-7.38c5.98-.74 18.31 1.78 36.99 7.55-12.77-11.65-22.77-18.25-30-19.8C21.2-.83 13.9.2 5.42 5.43z" mask="url(#ed)"/></g></g></svg>'
+				},
+				{
+					id: "EAB",
+					name: "耳朵2（普通尖耳）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="310"><defs><path id="eba" d="M12.1 70.07c-3.87-6.99-6.85-16.99-8.96-30A199.4 199.4 0 0 1 .77.23l64.2 30.07L12.1 70.07z"/><path id="ebc" d="M12.1 70.07c-3.87-6.99-6.85-16.99-8.96-30A199.4 199.4 0 0 1 .77.23l64.2 30.07L12.1 70.07z"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(80.35 83.17)"><mask id="ebb" fill="#fff"><use xlink:href="#eba"/></mask><use fill="#FFE69B" xlink:href="#eba"/><path fill="#000" fill-opacity=".05" d="M-.47-.79c12.6 10.71 23.44 21.7 32.55 32.95a266.47 266.47 0 0 1 23.06 32.99l33-30.1L-.46-.8z" mask="url(#ebb)"/></g><g transform="matrix(-1 0 0 1 262 83)"><mask id="ebd" fill="#fff"><use xlink:href="#ebc"/></mask><use fill="#FFE69B" xlink:href="#ebc"/><path fill="#000" fill-opacity=".05" d="M-1.25-1.37C11.86 9.73 22.97 20.9 32.08 32.16a266.47 266.47 0 0 1 23.06 32.99l33-30.1-89.4-36.42z" mask="url(#ebd)"/></g></g></svg>'
+				}
+			],
+			mustache: [
+				{
+					id: "UAA",
+					name: "胡须1（两根）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><path fill="none" stroke="#000" stroke-linecap="round" stroke-width="2" d="M104.94 217.04c-11.98-6.68-24.37-10.74-37.15-12.18a312.08 312.08 0 0 0-34.48-2.15m65.22 24.72c-6.47 1.85-16.1 3.5-28.89 4.93a312.08 312.08 0 0 1-34.48 2.15m210.52-17.47c11.98-6.68 24.36-10.74 37.15-12.18a312.08 312.08 0 0 1 34.48-2.15m-65.23 24.72c6.48 1.85 16.1 3.5 28.9 4.93a312.08 312.08 0 0 0 34.47 2.15"/></svg>'
+				},
+				{
+					id: "UAB",
+					name: "胡须2（卷曲）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><path fill="none" stroke="#48303A" stroke-linecap="round" stroke-width="2" d="M112.65 216.6c-12.79-3.32-25.28-4.08-37.48-2.26-12.2 1.82-23.03 4-32.48 6.53-5.98.97-9.26 4.25-9.84 9.85-.88 8.4 4.1 12.4 10.77 10.97 6.67-1.44 8.27-3.63 5.68-9.4-2.6-5.76-8.65-6.05-10.13-2.33-.99 2.49.25 4.4 3.7 5.73m195.79-19.09c12.78-3.32 25.28-4.08 37.48-2.26 12.2 1.82 23.02 4 32.47 6.53 5.98.97 9.27 4.25 9.85 9.85.87 8.4-4.1 12.4-10.78 10.97-6.67-1.44-8.27-3.63-5.67-9.4 2.6-5.76 8.65-6.05 10.13-2.33.98 2.49-.25 4.4-3.7 5.73"/></svg>'
+				},
+			],
+			valla: [
+				{
+					id: "VAA",
+					name: "眉毛1（无眉毛）",
+					svg: ''
+				},
+				{
+					id: "VAB",
+					name: "眉毛2（粗眉）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><path fill="none" stroke="#000" stroke-linecap="round" stroke-width="13" d="M125.3 141.19h15.74m66.36 0h13.03"/></svg>'
+				},
+				{
+					id: "VAC",
+					name: "眉毛3（两边飞）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><path fill="none" stroke="#000" stroke-linecap="round" stroke-width="3" d="M114.6 147.92c-.43-7.41 1.83-11.98 6.8-13.7 4.97-1.71 9.5 1 13.56 8.14m79.64-1.63c4.42-5.96 9.09-8 14-6.13 4.91 1.88 6.63 6.86 5.16 14.95"/></svg>'
+				},
+			],
+			eyes: [
+				{
+					id : "YAA",
+					name: "眼睛1（蓝色魅眼）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="209" height="81"><defs><radialgradient id="yab" cx="42.77%" cy="35.71%" r="100%" fx="42.77%" fy="35.71%" gradienttransform="matrix(0 -1 .79807 0 .14 .78)"><stop offset="0%" stop-color="#DEFFFE"/><stop offset="100%" stop-color="#8CD0FF"/></radialgradient><path id="yaa" d="M0 33.75c13.57 10.47 26.17 13.32 37.8 8.55 11.63-4.77 17.63-18.14 18-40.1C37.03-1.36 23.14-.6 14.13 4.5 5.13 9.57.42 19.33 0 33.74z"/><path id="yad" d="M0 33.75c13.57 10.47 26.17 13.32 37.8 8.55 11.63-4.77 17.63-18.14 18-40.1C37.03-1.36 23.14-.6 14.13 4.5 5.13 9.57.42 19.33 0 33.74z"/><path id="yae" d="M0 33.75c13.57 10.47 26.17 13.32 37.8 8.55 11.63-4.77 17.63-18.14 18-40.1C37.03-1.36 23.14-.6 14.13 4.5 5.13 9.57.42 19.33 0 33.74z"/><path id="yag" d="M0 33.75c13.57 10.47 26.17 13.32 37.8 8.55 11.63-4.77 17.63-18.14 18-40.1C37.03-1.36 23.14-.6 14.13 4.5 5.13 9.57.42 19.33 0 33.74z"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(124.65 20.66)"><mask id="yac" fill="#fff"><use xlink:href="#yaa"/></mask><use fill="url(#yab)" stroke="#000" stroke-width="4" xlink:href="#yaa"/><ellipse cx="24.58" cy="14.17" fill="#000" mask="url(#yac)" rx="7.31" ry="14.17"/><ellipse cx="33.41" cy="14.85" fill="#FFF" mask="url(#yac)" rx="9.28" ry="1.86"/><path fill="#000" d="M.93 33.42c2.33-5.03 6.52-9.39 12.57-13.08 6.06-3.7 20.75-8.24 44.06-13.65L58.47 0 26.22 1.6 11.74 6.7c-1 .62-2.34 2.47-4 5.55-2.5 4.62-3.57 7.02-4.58 11.26-.67 2.82-1.41 6.12-2.23 9.91z" mask="url(#yac)" opacity=".05"/><use stroke="#000" stroke-width="4" xlink:href="#yad"/></g><path stroke="#000" stroke-linecap="round" stroke-width="4" d="M181.87 23.21c5.26 0 9.31-1.47 12.16-4.4"/><g transform="matrix(-1 0 0 1 82.89 20.66)"><mask id="yaf" fill="#fff"><use xlink:href="#yae"/></mask><use fill="url(#yab)" stroke="#000" stroke-width="4" xlink:href="#yae"/><ellipse cx="24.58" cy="14.17" fill="#000" mask="url(#yaf)" rx="7.31" ry="14.17"/><ellipse cx="33.41" cy="14.85" fill="#FFF" mask="url(#yaf)" rx="9.28" ry="1.86"/><path fill="#000" d="M.93 33.42c2.33-5.03 6.52-9.39 12.57-13.08 6.06-3.7 20.75-8.24 44.06-13.65L58.47 0 26.22 1.6 11.74 6.7c-1 .62-2.34 2.47-4 5.55-2.5 4.62-3.57 7.02-4.58 11.26-.67 2.82-1.41 6.12-2.23 9.91z" mask="url(#yaf)" opacity=".05"/><use stroke="#000" stroke-width="4" xlink:href="#yag"/></g><path stroke="#000" stroke-linecap="round" stroke-width="4" d="M27.2 23.21c-5.26 0-9.31-1.47-12.16-4.4"/></g></svg>'
+				},
+				{
+					id : "YAB",
+					name: "眼睛2（困倦眼）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="209" height="81"><defs><ellipse id="yba" cx="25.71" cy="25.87" rx="25.64" ry="25.69"/><ellipse id="ybc" cx="25.71" cy="25.87" rx="25.64" ry="25.69"/><ellipse id="ybd" cx="25.71" cy="25.87" rx="25.64" ry="25.69"/><ellipse id="ybf" cx="25.71" cy="25.87" rx="25.64" ry="25.69"/></defs><g fill="none" fill-rule="evenodd"><g transform="matrix(-1 0 0 1 88.3 14.19)"><mask id="ybb" fill="#fff"><use xlink:href="#yba"/></mask><use fill="#FFF" stroke="#000" stroke-width="4" xlink:href="#yba"/><path fill="#000" fill-opacity=".1" stroke="#000" stroke-width="4" d="M.86 24.88a30896.6 30896.6 0 0 0 50.82-.01l6.89-26.33L-3-2.58.86 24.88z" mask="url(#ybb)"/><use stroke="#000" stroke-width="4" xlink:href="#ybc"/></g><path fill="#000" d="M56.25 40.19H44.99a21.5 21.5 0 0 0-.06 1.64c0 6.1 2.55 11.06 5.69 11.06 3.14 0 5.69-4.95 5.69-11.06 0-.56-.02-1.1-.06-1.64z"/><g transform="matrix(-1 0 0 1 176.3 14.19)"><mask id="ybe" fill="#fff"><use xlink:href="#ybd"/></mask><use fill="#FFF" stroke="#000" stroke-width="4" xlink:href="#ybd"/><path fill="#000" fill-opacity=".1" stroke="#000" stroke-width="4" d="M.86 24.88a31395.33 31395.33 0 0 0 50.82-.01l6.89-26.33L-3-2.58.86 24.88z" mask="url(#ybe)"/><use stroke="#000" stroke-width="4" xlink:href="#ybf"/></g><path fill="#000" d="M144.25 40.19h-11.26a21.5 21.5 0 0 0-.06 1.64c0 6.1 2.55 11.06 5.69 11.06 3.14 0 5.69-4.95 5.69-11.06 0-.56-.02-1.1-.06-1.64z"/></g></svg>'
+				},
+				{
+					id : "YAC",
+					name: "眼睛3（水汪汪）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="209" height="81"><g fill="none" fill-rule="evenodd"><g transform="translate(35.3 13.19)"><circle cx="27.19" cy="27.31" r="26.5" fill="#FFF" stroke="#000" stroke-width="4"/><path fill="#000" d="M27.5 46A18.5 18.5 0 1 0 9 27.5c0 2.26.18 8.48 5.63 13.68C20.07 46.38 25.92 46 27.5 46z"/><circle cx="15.5" cy="18.5" r="6.5" fill="#FFF"/><circle cx="31.5" cy="42.5" r="5.5" fill="#FFF"/><circle cx="39" cy="18" r="9" fill="#FFF"/></g><g transform="translate(122.3 13.19)"><circle cx="27.19" cy="27.31" r="26.5" fill="#FFF" stroke="#000" stroke-width="4"/><path fill="#000" d="M27.5 46A18.5 18.5 0 1 0 9 27.5c0 2.26.18 8.48 5.63 13.68C20.07 46.38 25.92 46 27.5 46z"/><circle cx="15.5" cy="18.5" r="6.5" fill="#FFF"/><circle cx="31.5" cy="42.5" r="5.5" fill="#FFF"/><circle cx="39" cy="18" r="9" fill="#FFF"/></g></g></svg>'
+				},
+			],
+			others: [
+				{
+					id : "OAO",
+					name: "无装饰物",
+					svg: ''
+				},
+				{
+					id : "OAA",
+					name: "装饰物1（一团乱）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><g fill="none" fill-rule="evenodd"><path fill="#FFE69B" d="M137.28 100.7c-2.75 0-4.97-1.9-4.97-4.25 0-2.36 2.22-4.26 4.97-4.26 2.74 0 4.97 1.9 4.97 4.26 0 2.35-2.23 4.25-4.97 4.25zm-13.49-8.74c-4.7 0-8.51-3.6-8.51-8.03 0-4.44 3.81-8.03 8.51-8.03 4.7 0 8.52 3.6 8.52 8.03s-3.81 8.03-8.52 8.03zm47.49-8.06c-28.17 0-51-15-51-33.5s22.83-33.5 51-33.5c28.16 0 51 15 51 33.5s-22.84 33.5-51 33.5z"/><path stroke="#000" d="M194.02 57.92c.5 5.26.95 8.5 1.31 9.72.37 1.21-7.36 1.21-23.18 0l9.15-3.49 14.85-13.74-4.03-15.57L178 35.98l-7.77-7.66c-19.1 4.68-29.14 7.23-30.09 7.66-.95.42.59 3.94 4.62 10.56l36.53-17.08c4.11 9.8 6.17 14.83 6.17 15.11 0 .28-.31 3.32-.94 9.13l-9.48.88c-1.3 13.6-1.96 20.51-1.96 20.77 0 .25-7.67-2.93-23.03-9.54l6.37-14.62 25.65-2.38-16.56-16.32-8.34 15.45 14.38-6.36 7.74-3.43-11.06 25c-16.5-1.54-24.48-3.29-23.92-5.23.48-1.67 2.43-11.37 4.2-19.22 1.33-5.9 2.56-10.76 2.99-10.38 1 .9 29.85 29.6 29.85 29.6l-18.54 8.5c-3.07-5.67-4.3-8.5-3.69-8.5"/></g></svg>'
+				},
+				{
+					id : "OAB",
+					name: "装饰物2（白飞机头）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><defs><filter id="oaa" width="136.5%" height="146.8%" x="-18.3%" y="-23.4%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="5"/></filter></defs><g fill="none" fill-rule="evenodd"><path fill="#000" d="M61.45 86.33c-9.7-1.14-16.99-2.74-21.89-4.8-14.1-6.68-20.17-16.44-18.2-29.29 2.95-19.27 15.86-26.5 24.94-28.66 9.07-2.17 0 1.54 0 15.1 0 13.56 12.95 15.98 24.44 15.98 11.48 0 23.76.07 30.66 10.91 6.9 10.84-8.48 20.76-13.76 20.76-5.27 0-11.64 1.7-26.19 0z" filter="url(#oaa)" opacity=".05" transform="translate(109 42)"/><path fill="#FFF" d="M170.45 121.33c-9.7-1.14-16.99-2.74-21.89-4.8-14.1-6.68-20.17-16.44-18.2-29.29 2.95-19.27 15.86-26.5 24.94-28.66 9.07-2.17 0 1.54 0 15.1 0 13.56 12.95 15.98 24.44 15.98 11.48 0 23.76.07 30.66 10.91 6.9 10.84-8.48 20.76-13.76 20.76-5.27 0-11.64 1.7-26.19 0z"/></g></svg>'
+				},
+				{
+					id : "OAC",
+					name: "装饰物3（天使光圈）",
+					svg: '<svg xmlns="http://www.w3.org/2000/svg" width="350" height="310"><defs><filter id="oba" width="115.3%" height="197.4%" x="-7.7%" y="-48.7%" filterunits="objectBoundingBox"><fegaussianblur in="SourceGraphic" stddeviation="2"/></filter></defs><g fill="none" fill-rule="evenodd"><path fill="#FFC637" stroke="#F79F3C" d="M169.5 83c-24.02 0-43.5-6.04-43.5-13.5S145.48 56 169.5 56 213 62.04 213 69.5 193.52 83 169.5 83zm-.5-8c16.57 0 30-2.91 30-6.5S185.57 62 169 62s-30 2.91-30 6.5 13.43 6.5 30 6.5z"/><path fill="#DE7B11" d="M20.62 26.72a4.26 4.26 0 0 0 1.69 4.23c2.07 1.62 6.73 4.3 11 5.12 4.28.82 15.36 2.97 26.3 2.97 10.96 0 23.13-.42 26.46-1.97 3.34-1.55 11.67-3.7 12.75-6.12 1.1-2.41-4.48.47-9.6 1.93-5.12 1.47-23.5 3.2-29.46 3.2-5.95 0-21.66-1.27-26.45-3.2a137.77 137.77 0 0 1-12.7-6.16z" filter="url(#oba)" opacity=".6" transform="translate(109 42)"/><path stroke="#FFF" stroke-linecap="round" stroke-width="2" d="M139.4 62.04c6.65-1.95 11.8-3.07 15.42-3.35 5.43-.43 15.56-.85 21.89-.43 4.21.29 9.18.89 14.9 1.8" opacity=".3"/></g></svg>'
+				},
+			]
+		}
+		var vm = new Vue({
+			data: {
+				gene: gene,
+				currentCat: {
+					body: "",
+					tail: "",
+					head: "",
+					mouth: "",
+					ears: "",
+					mustache: "",
+					valla: "",
+					eyes: "",
+					others: "",
+					bgcolor: "",
+				},
+				bgcolors: ["#F44336","#E91E63","#9C27B0","#673AB7","#3F51B5","#2196F3","#009688","#4CAF50","#CDDC39","#FF9800","#FF5722","#9E9E9E"],
+				allCats: [],
+				currentIndex: -1
+			},
+			el: '#app',
+			methods: {
+				randomCat : function(){
+					var gene = this.gene;
+					var body = randomType(gene.bodys);
+					var tail = randomType(gene.tails);
+					var head = randomType(gene.heads);
+					var mouth = randomType(gene.mouth);
+					var ears = randomType(gene.ears);
+					var mustache = randomType(gene.mustache);
+					var valla = randomType(gene.valla);
+					var eyes = randomType(gene.eyes);
+					var others = randomType(gene.others);
+					var bgcolor = randomType(this.bgcolors);
+					function randomType(arr){
+						var index = parseInt(Math.random() * arr.length, 10);
+						return {
+							index: index,
+							content: arr[index]
+						}
+					}
+					this.currentCat = {
+						body: body.content.svg,
+						body_: body,
+						tail: tail.content.svg,
+						_tail: tail,
+						head: head.content.svg,
+						_head: head,
+						mouth: mouth.content.svg,
+						_mouth: mouth,
+						ears: ears.content.svg,
+						_ears: ears,
+						mustache: mustache.content.svg,
+						_mustache: mustache,
+						valla: valla.content.svg,
+						_valla: valla,
+						eyes: eyes.content.svg,
+						_eyes: eyes,
+						others: others.content.svg,
+						_others: others,
+						bgcolor: bgcolor.content,
+					}
+					this.allCats.push(this.currentCat);
+					this.currentIndex = this.allCats.length - 1;
+				},
+				getPrevCat: function(){
+					if(this.allCats && this.currentIndex > 0){
+						this.currentIndex = this.currentIndex - 1;
+						this.currentCat = this.allCats[this.currentIndex]
+					}
+				}
+			}
+		});
+		// vm.msg = '<i>ajjj</i>';
+	</script>
+</body>
+</html>
